@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Online Store</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, green, blue, orange, yellow);
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+      width: 200px;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: black;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+      }
+
+      nav a {
+        color: white;
+        padding: 10px;
+        border-bottom: 1px solid gray;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px;
+    }
+
+    .product {
+      background: green;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: black;
+      font-weight: bold;
+    }
+
+    #no-results {
+      text-align: center;
+      color: yellow;
+      font-weight: bold;
+      display: none;
+    }
+
+    .highlight {
+      background: yellow;
+      color: black;
+      font-weight: bold;
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">MyStore</div>
+    <div style="display:flex; align-items:center; gap:5px;">
+      <input type="text" id="search-bar" class="search-bar" placeholder="Search products...">
+      <button onclick="performSearch()" style="padding:6px 12px; border:none; border-radius:5px; background:orange; color:black; font-weight:bold;">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav id="menu">
+      <a href="#">Products</a>
+      <a href="#">Cart</a>
+      <a href="#">User Account</a>
+      <a href="#">Contact Us</a>
+      <a href="#">About Us</a>
+    </nav>
+  </header>
+
+  <!-- Product grid -->
+  <section class="products" id="products">
+    <div class="product">Laptop</div>
+    <div class="product">Smartphone</div>
+    <div class="product">Headphones</div>
+    <div class="product">Camera</div>
+    <div class="product">Shoes</div>
+    <div class="product">Watch</div>
+  </section>
+
+  <!-- No results message -->
+  <p id="no-results">No results found.</p>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function performSearch() {
+      liveSearch(); // reuse live search logic
+    }
+
+    function liveSearch() {
+      const query = document.getElementById('search-bar').value.trim().toLowerCase();
+      const products = document.querySelectorAll('#products .product');
+      let found = false;
+
+      products.forEach(product => {
+        const text = product.textContent;
+        const lowerText = text.toLowerCase();
+
+        if(query === "" || lowerText.includes(query)) {
+          product.style.display = "block";
+          found = true;
+
+          // Highlight matching part
+          if(query !== "") {
+            const regex = new RegExp(`(${query})`, "gi");
+            product.innerHTML = text.replace(regex, `<span class="highlight">$1</span>`);
+          } else {
+            product.innerHTML = text; // reset
+          }
+        } else {
+          product.style.display = "none";
+          product.innerHTML = text; // reset
+        }
+      });
+
+      const noResults = document.getElementById('no-results');
+      if(!found && query !== "") {
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+      }
+    }
+
+    // Attach live search to typing
+    document.getElementById('search-bar').addEventListener("input", liveSearch);
+  </script>
+
+</body>
+</html>

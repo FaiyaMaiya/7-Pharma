@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="CSS/style.css" />
+  <title>7 Pharmaceuticals Ltd - Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+     <div class="header-inner">
+       <a href="index.html" class="logo">7 Pharmaceuticals</a>
+       <nav class="main-nav" aria-label="Main navigation">
+         <a href="index.html">Products</a>
+         <a href="#" class="cart-link" onclick="openCart(); return false;">Cart <span id="cart-count" class="cart-badge">0</span></a>
+         <div class="account-wrapper">
+           <button id="account-btn" class="account-btn" aria-label="Account menu" aria-expanded="false">
+             <i class="fas fa-user-circle"></i>
+           </button>
+           <div id="account-dropdown" class="account-dropdown" role="menu" aria-hidden="true">
+             <a href="#" class="dropdown-item" role="menuitem" onclick="showPaymentHistory(); return false;">Payment History</a>
+             <a href="#" class="dropdown-item" role="menuitem" onclick="showPendingPayments(); return false;">Pending Payments</a>
+             <a href="#" class="dropdown-item" role="menuitem" onclick="showContactUs(); return false;">Contact Us</a>
+             <a href="#" class="dropdown-item" role="menuitem" onclick="showAboutUs(); return false;">About Us</a>
+             <a href="#" class="dropdown-item logout-item" role="menuitem" onclick="logout(); return false;">Logout</a>
+           </div>
+         </div>
+       </nav>
+       <button id="hamburgerBtn" class="hamburger-btn mobile-only" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+         <span class="hamburger-icon">☰</span>
+       </button>
+     </div>
+     <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+       <div class="mobile-menu-inner" role="document">
+         <button id="mobileClose" class="mobile-close" aria-label="Close menu">✕</button>
+         <nav class="mobile-nav" aria-label="Mobile navigation">
+           <a href="index.html" class="mobile-link">Products</a>
+           <a href="#" class="mobile-link" onclick="openCart(); return false;">Cart <span id="cart-count-mobile" class="cart-badge">0</span></a>
+         </nav>
+       </div>
+     </div>
+   </header>
+
+  <div class="results-bar" id="results-bar">
+    <div id="results-count">Search results</div>
+  </div>
+
+  <section class="products" id="products" aria-live="polite" aria-label="Search results"></section>
+  <p id="no-results">No results found.</p>
+
+  <div id="cart-panel" class="cart-panel" aria-hidden="true">
+    <div class="cart-panel-backdrop" onclick="closeCartPanel()"></div>
+    <aside class="cart-panel-content" role="dialog" aria-modal="true" aria-label="Shopping cart">
+      <button class="cart-panel-close" onclick="closeCartPanel()" aria-label="Close cart">×</button>
+      <h2>Shopping Cart</h2>
+      <div id="cart-items-list" class="cart-items-list"></div>
+      <div id="cart-summary" class="cart-summary"></div>
+      <div class="cart-actions-row">
+        <button id="checkout-button" class="checkout-btn" onclick="checkout()" disabled>Checkout</button>
+      </div>
+    </aside>
+  </div>
+
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+  <script src="JS/javascript.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('q') || '';
+      const searchBar = document.getElementById('search-bar');
+      if (searchBar && query) {
+        searchBar.value = query;
+        performSearch();
+      }
+    });
+  </script>
+</body>
+</html>

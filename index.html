@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="CSS/style.css">
+  <title>7 Pharmaceuticals Ltd - Home</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Fuse.js for fuzzy matching -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+</head>
+<body>
+  <!-- Responsive header with hamburger menu: paste this where your current <header> is -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">7 Pharmaceuticals</a>
+
+    <!-- Desktop controls (visible on wide screens) -->
+    <div class="header-controls desktop-only">
+      <div class="search-area" role="search" aria-label="Product search">
+        <input id="search-bar" class="search-bar" type="text" placeholder="Search products or categories...">
+        <select id="category-filter" aria-label="Filter by category">
+          <option value="">All Categories</option>
+          <option value="Pharamaceutical Drugs & Surgical Consumables">Pharamaceutical Drugs & Surgical Consumables</option>
+          <option value="Medical Equipment">Medical Equipment</option>
+          <option value="Laboratory Diagnostic Kits">Laboratory Diagnostic Kits</option>
+          <option value="Dental Equipment">Dental Equipment</option>
+          <option value="Radiology Equipment & Consumables">Radiology Equipment & Consumables</option>
+          <option value="Cosmetics">Cosmetics</option>
+        </select>
+        <div class="controls">
+          <input id="min-price" type="number" placeholder="Min PGK" min="0" style="width:90px;">
+          <input id="max-price" type="number" placeholder="Max PGK" min="0" style="width:90px;">
+          <select id="sort-by" class="sort-select" aria-label="Sort products">
+            <option value="relevance">Sort: Relevance</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+            <option value="name-desc">Name: Z → A</option>
+          </select>
+          <button class="search-btn" onclick="performSearch()" aria-label="Search button"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+
+<nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Products</a>
+      <a href="#" class="cart-link" onclick="openCart(); return false;">Cart <span id="cart-count" class="cart-badge">0</span></a>
+      <!-- Chat button -->
+      <div class="chat-wrapper">
+        <button id="chat-btn" class="chat-btn" aria-label="Chat support" aria-expanded="false">
+          <i class="fas fa-comments"></i>
+          <span id="chat-notification" class="chat-badge">0</span>
+        </button>
+        <div id="chat-dropdown" class="chat-dropdown" role="menu" aria-hidden="true">
+          <!-- Chat interface will be loaded here -->
+        </div>
+      </div>
+      <div class="account-wrapper">
+        <button id="account-btn" class="account-btn" aria-label="Account menu" aria-expanded="false">
+          <i class="fas fa-user-circle"></i>
+        </button>
+        <div id="account-dropdown" class="account-dropdown" role="menu" aria-hidden="true">
+          <div id="auth-status" style="padding: 8px 12px; font-size: 0.85rem; color: #888; border-bottom: 1px solid #444; margin-bottom: 4px;">
+            <span id="user-info">Not logged in</span>
+          </div>
+          <a href="login.html" class="dropdown-item" role="menuitem" id="login-link" onclick="window.location.href='login.html'; return false;">
+            <i class="fas fa-sign-in-alt"></i> Login / Sign Up
+          </a>
+          <a href="#" class="dropdown-item" role="menuitem" onclick="showPaymentHistory(); return false;">Payment History</a>
+          <a href="#" class="dropdown-item" role="menuitem" onclick="showPendingPayments(); return false;">Pending Payments</a>
+          <a href="#" class="dropdown-item" role="menuitem" onclick="showContactUs(); return false;">Contact Us</a>
+          <a href="#" class="dropdown-item" role="menuitem" onclick="showAboutUs(); return false;">About Us</a>
+          <a href="#" class="dropdown-item logout-item" role="menuitem" id="logout-link" style="display: none;" onclick="logout(); return false;">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hamburger button (visible on small screens) -->
+  <button id="hamburgerBtn" class="hamburger-btn mobile-only" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <span class="hamburger-icon">☰</span>
+  </button>
+</div>
+
+<!-- Mobile menu panel -->
+<div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+     <div class="mobile-menu-inner" role="document">
+    <button id="mobileClose" class="mobile-close" aria-label="Close menu">✕</button>
+
+    <!-- User Info Section (top) -->
+    <div class="mobile-user-info">
+      <div id="mobile-user-name" class="mobile-user-name">Guest</div>
+      <div id="mobile-user-status" class="mobile-user-status">Not logged in</div>
+    </div>
+
+    <!-- Mobile Account Button -->
+    <button id="mobile-account-btn" class="mobile-account-btn" aria-label="Account menu">
+        <!-- Profile picture or default icon will be set by script -->
+    </button>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="index.html" class="mobile-link">Products</a>
+        <a href="#" class="mobile-link" onclick="openCart(); return false;">Cart <span id="cart-count-mobile" class="cart-badge">0</span></a>
+        <!-- Chat button -->
+        <button id="mobile-chat-btn" class="mobile-chat-btn" aria-label="Chat support" onclick="toggleChatDropdown(); closeMobileMenu(); return false;">
+            <i class="fas fa-comments"></i> Chat
+        </button>
+    </nav>
+
+    <div class="mobile-search" role="search" aria-label="Mobile product search">
+        <input id="mobile-search-bar" class="search-bar" type="text" placeholder="Search products or categories...">
+        <select id="mobile-category-filter" aria-label="Filter by category">
+            <option value="">All Categories</option>
+            <option value="Pharamaceutical Drugs & Surgical Consumables">Pharamaceutical Drugs & Surgical Consumables</option>
+            <option value="Medical Equipment">Medical Equipment</option>
+            <option value="Laboratory Diagnostic Kits">Laboratory Diagnostic Kits</option>
+            <option value="Dental Equipment">Dental Equipment</option>
+            <option value="Radiology Equipment & Consumables">Radiology Equipment & Consumables</option>
+            <option value="Cosmetics">Cosmetics</option>
+        </select>
+        <div class="controls">
+            <input id="mobile-min-price" type="number" placeholder="Min PGK" min="0">
+            <input id="mobile-max-price" type="number" placeholder="Max PGK" min="0">
+            <select id="mobile-sort-by" class="sort-select" aria-label="Sort products">
+                <option value="relevance">Sort: Relevance</option>
+                <option value="price-asc">Price: Low → High</option>
+                <option value="price-desc">Price: High → Low</option>
+                <option value="name-asc">Name: A → Z</option>
+                <option value="name-desc">Name: Z → A</option>
+            </select>
+        </div>
+        <button class="search-btn" onclick="performMobileSearch()" aria-label="Search mobile"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <!-- Mobile Account Content (shown after search) -->
+    <div id="mobile-account-content">
+    </div>
+
+    <div class="mobile-actions" style="margin-top:12px; display:flex; gap:8px;">
+        <button class="google" onclick="window.location.href='/auth/google'"><i class="fab fa-google"></i> Google</button>
+        <button class="facebook" onclick="window.location.href='/auth/facebook'"><i class="fab fa-facebook-f"></i> Facebook</button>
+    </div>
+
+  </div>
+</div>
+</header>
+
+  <!-- Results info -->
+  <div class="results-bar" id="results-bar" aria-hidden="false">
+    <div id="results-count">Showing results</div>
+    <div id="results-actions" style="display:flex;gap:8px;align-items:center;"></div>
+  </div>
+
+  <!-- Products (results appear here) -->
+  <section class="products" id="products" aria-live="polite" aria-label="Search results"></section>
+  <p id="no-results">No results found.</p>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+
+  <div id="cart-panel" class="cart-panel" aria-hidden="true">
+    <div id="cart-panel-backdrop" onclick="closeCartPanel()"></div>
+    <aside class="cart-panel-content" role="dialog" aria-modal="true" aria-label="Shopping cart">
+      <button class="cart-panel-close" onclick="closeCartPanel()" aria-label="Close cart">×</button>
+      <h2>Shopping Cart</h2>
+      <div id="cart-items-list" class="cart-items-list"></div>
+      <div id="cart-summary" class="cart-summary"></div>
+      <div class="cart-actions-row">
+        <button id="invoice-button" class="invoice-btn" onclick="generateInvoice()" disabled>Generate Proforma Invoice</button>
+        <button id="checkout-button" class="checkout-btn" onclick="checkout()" disabled>Checkout</button>
+      </div>
+    </aside>
+  </div>
+
+  <div id="image-modal" class="image-modal" aria-hidden="true">
+    <div class="image-modal-backdrop" onclick="closeImageViewer()"></div>
+    <div class="image-modal-content" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button class="image-modal-close" onclick="closeImageViewer()" aria-label="Close image preview">×</button>
+      <img id="image-viewer-img" src="" alt="" />
+      <div id="image-viewer-caption" class="image-modal-caption"></div>
+    </div>
+  </div>
+
+  <!-- Confirmation modal for destructive actions -->
+  <div id="confirm-modal" class="confirm-modal" aria-hidden="true">
+    <div class="confirm-modal-backdrop" onclick="closeConfirmModal()"></div>
+    <div class="confirm-modal-content" role="dialog" aria-modal="true" aria-label="Confirmation">
+      <button class="confirm-modal-close" onclick="closeConfirmModal()" aria-label="Close confirmation">×</button>
+      <div id="confirm-modal-message" class="confirm-modal-message">Are you sure?</div>
+      <div class="confirm-modal-actions">
+        <button id="confirm-no" class="confirm-btn cancel">No</button>
+        <button id="confirm-yes" class="confirm-btn confirm">Yes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment upload modal -->
+  <div id="payment-modal" class="confirm-modal" aria-hidden="true">
+    <div class="confirm-modal-backdrop" onclick="closePaymentModal()"></div>
+    <div class="confirm-modal-content" style="max-width:500px; text-align:left; display:flex; flex-direction:column; height:600px;">
+      <button class="confirm-modal-close" onclick="closePaymentModal()" aria-label="Close payment modal">×</button>
+      <h3 style="margin:0 0 12px; color:#111;">Upload Payment Proof</h3>
+      <p style="margin:0 0 12px; color:#555; font-size:0.9rem;">
+        Please upload your proforma invoice and payment receipt.
+      </p>
+      
+      <!-- Proforma invoice upload -->
+      <label style="display:block; margin-bottom:6px; font-weight:600; color:#333;">Proforma Invoice (PDF)</label>
+      <input type="file" id="proforma-file-input" accept="application/pdf" style="margin-bottom:12px; width:100%;">
+      <div id="proforma-preview" style="margin-bottom:12px; display:none;">
+        <span style="color:#0b7a3a; font-size:0.85rem;">✓ Proforma invoice selected</span>
+      </div>
+      
+      <!-- Payment proof upload -->
+      <label style="display:block; margin-bottom:6px; font-weight:600; color:#333;">Payment Receipt (Image)</label>
+      <div id="payment-preview" style="margin-bottom:12px; display:none;">
+        <img id="payment-preview-img" src="" alt="Payment proof preview" style="max-width:100%; max-height:200px; border-radius:8px;">
+      </div>
+      <input type="file" id="payment-file-input" accept="image/*" style="margin-bottom:12px;">
+      <div class="confirm-modal-actions">
+        <button id="payment-cancel" class="confirm-btn cancel" onclick="closePaymentModal()">Cancel</button>
+        <button id="payment-upload" class="confirm-btn confirm" onclick="uploadPaymentProof()">Upload</button>
+      </div>
+      <p id="payment-status" style="margin:8px 0 0; font-size:0.85rem; min-height:20px;"></p>
+    </div>
+  </div>
+
+  <!-- Login Prompt Modal - shown when guest tries to access protected features -->
+  <div id="login-prompt-modal" class="confirm-modal" aria-hidden="true">
+    <div class="confirm-modal-backdrop" onclick="closeLoginPromptModal()"></div>
+    <div class="confirm-modal-content" style="max-width:400px;">
+      <button class="confirm-modal-close" onclick="closeLoginPromptModal()" aria-label="Close login prompt">×</button>
+      <h3 style="margin:0 0 12px; color:#111;">Login Required</h3>
+      <p id="login-prompt-message" style="margin:0 0 16px; color:#555; font-size:0.95rem;">
+        You need to login to <span id="login-prompt-action" style="font-weight:600;"></span>.
+      </p>
+      <p style="margin:0 0 16px; color:#666; font-size:0.85rem;">
+        Please login using Google or Facebook to continue.
+      </p>
+      <div class="confirm-modal-actions">
+        <button class="confirm-btn cancel" onclick="closeLoginPromptModal()">Cancel</button>
+        <button class="confirm-btn confirm" onclick="window.location.href='login.html'">Login / Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin payment verification page link (hidden, for admin use) -->
+  <script>
+    // Admin verification page auto-refresh
+    const adminPaymentsKey = '7pharma_admin_payments';
+  </script>
+
+  <!-- Toast container for brief notifications -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="JS/javascript.js"></script>
+</body>
+
+</html>

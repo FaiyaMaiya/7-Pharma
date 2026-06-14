@@ -1,0 +1,98 @@
+[
+  {
+    "id": "pd1",
+    "name": "Sterile Surgical Gloves (Box of 50)",
+    "price": 24.99,
+    "category": "Pharamaceutical Drugs & Surgical Consumables",
+    "inventory": 54,
+    "image": "images/gloves.png"
+  },
+  {
+    "id": "pd2",
+    "name": "Disposable Syringes 5ml (Pack)",
+    "price": 12.5,
+    "category": "Pharamaceutical Drugs & Surgical Consumables",
+    "inventory": 120,
+    "image": "images/syringe.png"
+  },
+  {
+    "id": "me1",
+    "name": "Portable Patient Monitor",
+    "price": 899.0,
+    "category": "Medical Equipment",
+    "inventory": 18,
+    "image": "images/portablepaitentmonitor.png"
+  },
+  {
+    "id": "me2",
+    "name": "Electric Hospital Bed",
+    "price": 1299.0,
+    "category": "Medical Equipment",
+    "inventory": 8,
+    "image": "images/me2.png"
+  },
+  {
+    "id": "ldk1",
+    "name": "Rapid COVID-19 Antigen Test Kit",
+    "price": 6.99,
+    "category": "Laboratory Diagnostic Kits",
+    "inventory": 240,
+    "image": "images/ldk1.png"
+  },
+  {
+    "id": "ldk2",
+    "name": "Complete Blood Count (CBC) Test Kit",
+    "price": 14.5,
+    "category": "Laboratory Diagnostic Kits",
+    "inventory": 95,
+    "image": "images/ldk2.png"
+  },
+  {
+    "id": "de1",
+    "name": "Dental Chair Unit",
+    "price": 2499.0,
+    "category": "Dental Equipment",
+    "inventory": 12,
+    "image": "images/de1.png"
+  },
+  {
+    "id": "de2",
+    "name": "High-Speed Dental Handpiece",
+    "price": 199.0,
+    "category": "Dental Equipment",
+    "inventory": 32,
+    "image": "images/de2.png"
+  },
+  {
+    "id": "re1",
+    "name": "Portable X-Ray Cassette",
+    "price": 749.0,
+    "category": "Radiology Equipment & Consumables",
+    "inventory": 14,
+    "image": "images/re1.png"
+  },
+  {
+    "id": "re2",
+    "name": "Lead Apron (Radiation Protection)",
+    "price": 129.0,
+    "category": "Radiology Equipment & Consumables",
+    "inventory": 42,
+    "image": "images/re2.png"
+  },
+  {
+    "id": "cos1",
+    "name": "Medical Grade Skin Moisturizer 100ml",
+    "price": 19.99,
+    "category": "Cosmetics",
+    "inventory": 76,
+    "image": "images/cos1.png"
+  },
+  {
+    "id": "cos2",
+    "name": "Antiseptic Hand Gel 250ml",
+    "price": 7.5,
+    "category": "Cosmetics",
+    "inventory": 185,
+    "image": "images/cos2.png"
+  }
+]

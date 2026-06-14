@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.idea/
+.vscode/
+
+# Build outputs (if any are added later)
+dist/
+build/
+
+# Uploads and generated files
+PaymentsDB/
+ProfilePics/
+*.pdf
+app-data.json
+app-data.lock

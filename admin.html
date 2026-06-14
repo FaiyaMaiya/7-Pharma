@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="device-width,initial-scale=1" />
+  <link rel="stylesheet" href="CSS/style.css" />
+  <title>Admin - Payment Verification</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { background:#111; color:#fff; font-family:Arial, sans-serif; padding:20px; }
+    .admin-container { max-width:1200px; margin:0 auto; }
+    h1 { color:#ffd700; margin-bottom:20px; }
+    .payment-card { background:#222; border-radius:10px; padding:16px; margin-bottom:16px; border-left:4px solid #1e90ff; }
+    .payment-card.verified { border-left-color:#0b7a3a; }
+    .payment-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+    .payment-id { font-family:monospace; color:#ffd700; font-size:0.9rem; }
+    .payment-status { padding:4px 10px; border-radius:4px; font-size:0.8rem; font-weight:700; }
+    .status-pending { background:rgba(255,140,0,0.2); color:#ff8c00; }
+    .status-verified { background:rgba(11,122,58,0.2); color:#0b7a3a; }
+    .payment-details { margin-bottom:12px; }
+    .payment-details p { margin:4px 0; }
+    .payment-image { max-width:200px; max-height:150px; border-radius:6px; margin:10px 0; }
+    .btn-verify { background:#0b7a3a; color:#fff; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:700; }
+    .btn-verify:hover { background:#095f2e; }
+    .btn-refresh { background:#1e90ff; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-weight:700; margin-bottom:20px; }
+    .btn-refresh:hover { background:#176fcc; }
+    .empty-state { text-align:center; color:#888; padding:40px; }
+    .items-list { font-size:0.85rem; color:#ccc; }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <h1><i class="fas fa-user-shield"></i> Admin - Payment Verification</h1>
+    <div style="display:flex; gap:10px; margin-bottom:20px;">
+      <button class="btn-refresh" onclick="loadPayments()"><i class="fas fa-sync"></i> Refresh Payments</button>
+      <button onclick="logout()" style="background:#e74c3c; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-weight:700;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+    <div id="payments-container"></div>
+  </div>
+
+  <script>
+    // Check admin authentication
+    const adminToken = localStorage.getItem('auth_token');
+    const userRole = localStorage.getItem('user_role');
+    
+    if (!adminToken || userRole !== 'admin') {
+      window.location.href = 'login.html';
+    }
+
+    async function loadPayments() {
+      const container = document.getElementById('payments-container');
+      container.innerHTML = '<p style="text-align:center; color:#888;">Loading payments...</p>';
+      
+      try {
+        const response = await fetch('/api/admin/payments', {
+          headers: { 'X-Admin-Token': adminToken }
+        });
+        
+        if (response.status === 401) {
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('user_role');
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        const data = await response.json();
+        const payments = data.payments || [];
+        
+        if (payments.length === 0) {
+          container.innerHTML = '<div class="empty-state"><i class="fas fa-check-circle" style="font-size:3rem; color:#0b7a3a;"></i><p>No pending payments to verify.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = payments.map(p => `
+          <div class="payment-card" id="payment-${p.id}">
+            <div class="payment-header">
+              <span class="payment-id">${p.id}</span>
+              <span class="payment-status status-${p.status}">${p.status.toUpperCase()}</span>
+            </div>
+            <div class="payment-details">
+              <p><strong>Customer:</strong> ${p.username || 'Unknown'} ${p.email ? `(${p.email})` : ''}</p>
+              <p><strong>Total:</strong> PGK ${p.total.toFixed(2)}</p>
+              <p><strong>Created:</strong> ${new Date(p.createdAt).toLocaleString()}</p>
+              <p class="items-list"><strong>Items:</strong> ${p.items.map(i => `${i.quantity}x ${i.name}`).join(', ')}</p>
+            </div>
+            ${p.fileName ? `<img src="/PaymentsDB/${p.fileName}" alt="Payment proof" class="payment-image" onerror="this.style.display='none'">
+            <a href="/PaymentsDB/${p.fileName}" target="_blank" style="color:#1e90ff; font-size:0.85rem; display:block; margin-bottom:8px;"><i class="fas fa-expand"></i> View Payment Proof</a>` : ''}
+            ${p.proformaFileName ? `<a href="/PaymentsDB/${p.proformaFileName}" target="_blank" style="color:#ffd700; font-size:0.85rem; display:block; margin-bottom:8px;"><i class="fas fa-file-pdf"></i> View Proforma Invoice (PDF)</a>` : ''}
+            <button class="btn-verify" onclick="verifyPayment('${p.id}')"><i class="fas fa-check"></i> Verify Payment</button>
+          </div>
+        `).join('');
+      } catch (error) {
+        console.error('Failed to load payments:', error);
+        container.innerHTML = '<p style="text-align:center; color:#e74c3c;">Failed to load payments. Please refresh.</p>';
+      }
+    }
+
+    async function verifyPayment(paymentId) {
+      const card = document.getElementById(`payment-${paymentId}`);
+      if (!card) return;
+      
+      const btn = card.querySelector('.btn-verify');
+      btn.disabled = true;
+      btn.textContent = 'Verifying...';
+      
+      try {
+        if (!adminToken) {
+          alert('Error: Admin token not found. Please log in again.');
+          window.location.href = 'login.html';
+          return;
+        }
+
+        const response = await fetch(`/api/admin/payments/${paymentId}/verify`, {
+          method: 'POST',
+          headers: { 'X-Admin-Token': adminToken }
+        });
+
+        if (response.status === 401) {
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('user_role');
+          window.location.href = 'login.html';
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.success) {
+          card.classList.add('verified');
+          card.querySelector('.payment-status').className = 'payment-status status-verified';
+          card.querySelector('.payment-status').textContent = 'VERIFIED';
+          btn.textContent = '✓ Verified';
+          btn.style.background = '#0b7a3a';
+        } else {
+          btn.textContent = 'Retry';
+          btn.disabled = false;
+          alert(data.message || 'Verification failed');
+        }
+      } catch (error) {
+        console.error('Verification failed:', error);
+        btn.textContent = 'Retry';
+        btn.disabled = false;
+        alert('Verification error: ' + (error.message || 'Unknown error'));
+      }
+    }
+
+    // Auto-refresh every 10 seconds
+    loadPayments();
+    setInterval(loadPayments, 10000);
+  </script>
+  <script src="JS/javascript.js"></script>
+</body>
+</html>

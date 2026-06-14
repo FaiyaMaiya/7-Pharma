@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: 7pharma
+    runtime: node
+    plan: free
+    buildCommand: npm install --production
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://www.7pharma.com,https://7pharma.com
+      - key: GOOGLE_CALLBACK_URL
+        value: https://www.7pharma.com/auth/google/callback
+      - key: FACEBOOK_CALLBACK_URL
+        value: https://www.7pharma.com/auth/facebook/callback
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: FACEBOOK_APP_ID
+        sync: false
+      - key: FACEBOOK_APP_SECRET
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
