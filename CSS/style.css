@@ -232,9 +232,6 @@ nav.main-nav {
 .password-wrapper input{ padding-right:40px; }
 .toggle-password{ position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; color:orange; }
 
-.google{ background:#196df4; color:#fff; }
-.facebook{ background:#3b5998; color:#fff; }
-.email{ background:orange; color:#000; }
 .login-btn{ background:var(--accent); color:#fff; }
 .signup-btn{ background:#1e90ff; color:#fff; }
 
@@ -1053,7 +1050,8 @@ select.sort-select{ padding:8px; border-radius:6px; border:none; font-weight:700
 .mobile-menu { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.6); z-index:1200; align-items:flex-start; justify-content:flex-end; }
 .mobile-menu[aria-hidden="false"] { display:flex; }
 .mobile-menu-inner { width:100%; max-width:400px; background:#000; color:#fff; height:100%; padding:24px; box-shadow:-6px 0 24px rgba(0,0,0,0.4); overflow:auto; }
-.mobile-close { background:transparent; border:none; font-size:1.5rem; position:absolute; top:24px; right:24px; cursor:pointer; color:#fff; font-weight:700; }
+.mobile-close { background:transparent; border:none; font-size:1.5rem; position:absolute; top:24px; right:24px; cursor:pointer; color:#fff; font-weight:700; z-index: 2002; }
+
 
 /* Mobile user info section */
 .mobile-user-info {
@@ -1189,47 +1187,23 @@ select.sort-select{ padding:8px; border-radius:6px; border:none; font-weight:700
   cursor:pointer;
   transition:all 0.2s ease;
 }
-.mobile-actions .google {
-  background:#196df4;
-  color:#fff;
-}
-.mobile-actions .google:hover {
-  background:#4a88f0;
-  transform:translateY(-2px);
-}
-.mobile-actions .facebook {
-  background:#3b5998;
-  color:#fff;
-}
-.mobile-actions .facebook:hover {
-  background:#4c69b2;
-  transform:translateY(-2px);
-}
-.mobile-actions .email {
-  background:orange;
-  color:#000;
-}
-.mobile-actions .email:hover {
-  background:#ffb347;
-  transform:translateY(-2px);
-}
 
-@media (max-width: 900px) {
-   .desktop-only { display:none; }
-   .mobile-only { display:block; background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:#000; }
- }
+   @media (max-width: 900px) {
+    .desktop-only { display:none; }
+    .mobile-only { display:block; background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:#000; }
+  }
 
- /* Mobile chat dropdown - full screen modal */
- @media (max-width: 420px) {
-   .chat-dropdown {
-     top: 0;
-     right: 0;
-     left: 0;
-     bottom: 0;
-     max-width: 100%;
-     max-height: 100vh;
-     min-width: auto;
-     width: 100%;
+  /* Mobile chat dropdown - full screen modal */
+  @media (max-width: 420px) {
+    .chat-dropdown {
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      max-width: 100%;
+      max-height: 100vh;
+      min-width: auto;
+      width: 100%;
      height: 100vh;
      border-radius: 0;
      z-index: 4000;

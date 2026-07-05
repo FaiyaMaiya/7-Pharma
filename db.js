@@ -10,7 +10,8 @@ function ensureFile() {
       users: {},
       sessions: {},
       payments: {},
-      messages: []
+      messages: [],
+      carts: {}
     }, null, 2));
   }
 }
@@ -25,18 +26,31 @@ function writeDB(data) {
 }
 
 function withLock(fn) {
-  let waits = 0;
-  while (fs.existsSync(LOCK_PATH) && waits < 50) {
-    fs.unlinkSync(LOCK_PATH);
-    waits++;
+  // Simple lock implementation - retry until lock is acquired
+  const maxRetries = 100;
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      // Try to create lock file exclusively
+      fs.writeFileSync(LOCK_PATH, Date.now().toString(), { flag: 'wx' });
+      break;
+    } catch (e) {
+      // Lock exists, wait and retry
+      retries++;
+      if (retries >= maxRetries) {
+        throw new Error('Could not acquire database lock');
+      }
+      // Wait a bit before retrying
+      const start = Date.now();
+      while (Date.now() - start < 50) { /* busy wait */ }
+    }
   }
-  fs.writeFileSync(LOCK_PATH, Date.now().toString());
   try {
     const data = readDB();
     fn(data);
     writeDB(data);
   } finally {
-    if (fs.existsSync(LOCK_PATH)) fs.unlinkSync(LOCK_PATH);
+    try { fs.unlinkSync(LOCK_PATH); } catch (e) { /* ignore */ }
   }
 }
 
@@ -54,12 +68,16 @@ function findUserById(id) {
 }
 
 function createUser({ email, username, password, provider, profilePic, role }) {
+  let userId;
   withLock(data => {
     const existing = Object.values(data.users).find(u => u.email === email);
-    if (existing) return;
-    const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-    data.users[id] = {
-      id,
+    if (existing) {
+      userId = existing.id;
+      return;
+    }
+    userId = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    data.users[userId] = {
+      id: userId,
       email,
       username,
       password: password || null,
@@ -69,7 +87,7 @@ function createUser({ email, username, password, provider, profilePic, role }) {
       created_at: new Date().toISOString()
     };
   });
-  return findUserByEmail(email);
+  return findUserById(userId);
 }
 
 function updateUserPassword(email, newPassword) {
@@ -211,6 +229,7 @@ module.exports = {
   ensureFile,
   readDB,
   writeDB,
+  withLock,
   findUserByEmail,
   findUserById,
   createUser,

@@ -69,9 +69,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       const query = params.get('q') || '';
-      const searchBar = document.getElementById('search-bar');
-      if (searchBar && query) {
-        searchBar.value = query;
+      // Search page uses query parameter for search
+      if (query) {
         performSearch();
       }
     });

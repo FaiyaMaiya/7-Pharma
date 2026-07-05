@@ -1,98 +1,2442 @@
 [
   {
-    "id": "pd1",
-    "name": "Sterile Surgical Gloves (Box of 50)",
-    "price": 24.99,
-    "category": "Pharamaceutical Drugs & Surgical Consumables",
-    "inventory": 54,
-    "image": "images/gloves.png"
+    "id": "ph001",
+    "name": "Aciclovir Eye Ointment. 3%",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 001 - Aciclovir Eye Ointment. 3%.jpg"
   },
   {
-    "id": "pd2",
-    "name": "Disposable Syringes 5ml (Pack)",
-    "price": 12.5,
-    "category": "Pharamaceutical Drugs & Surgical Consumables",
-    "inventory": 120,
-    "image": "images/syringe.png"
+    "id": "ph002",
+    "name": "Adrenaline Injection. 1;1000. 1ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 002 - Adrenaline Injection. 1;1000. 1ml.jpg"
   },
   {
-    "id": "me1",
-    "name": "Portable Patient Monitor",
-    "price": 899.0,
-    "category": "Medical Equipment",
-    "inventory": 18,
-    "image": "images/portablepaitentmonitor.png"
+    "id": "ph003",
+    "name": "Albendazole Tablets, 400mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 003 - Albendazole Tablets, 400mg.jpg"
   },
   {
-    "id": "me2",
-    "name": "Electric Hospital Bed",
-    "price": 1299.0,
-    "category": "Medical Equipment",
-    "inventory": 8,
-    "image": "images/me2.png"
+    "id": "ph004",
+    "name": "Amiodarone Tablets, 200mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 004 - Amiodarone Tablets, 200mg.jpg"
   },
   {
-    "id": "ldk1",
-    "name": "Rapid COVID-19 Antigen Test Kit",
-    "price": 6.99,
-    "category": "Laboratory Diagnostic Kits",
-    "inventory": 240,
-    "image": "images/ldk1.png"
+    "id": "ph005",
+    "name": "Amethocaine Sterile Eye Drops. 0.5%",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 005 - Amethocaine Sterile Eye Drops. 0.5%.jpg"
   },
   {
-    "id": "ldk2",
-    "name": "Complete Blood Count (CBC) Test Kit",
-    "price": 14.5,
-    "category": "Laboratory Diagnostic Kits",
-    "inventory": 95,
-    "image": "images/ldk2.png"
+    "id": "ph006",
+    "name": "Amiloride Tablets, 5mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 006 - Amiloride Tablets, 5mg.jpg"
   },
   {
-    "id": "de1",
-    "name": "Dental Chair Unit",
-    "price": 2499.0,
-    "category": "Dental Equipment",
-    "inventory": 12,
-    "image": "images/de1.png"
+    "id": "ph007",
+    "name": "Amitriptyline HCL Tablets, 25mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 007 - Amitriptyline HCL Tablets, 25mg.jpg"
   },
   {
-    "id": "de2",
-    "name": "High-Speed Dental Handpiece",
-    "price": 199.0,
-    "category": "Dental Equipment",
-    "inventory": 32,
-    "image": "images/de2.png"
+    "id": "ph008",
+    "name": "Amoxycillin Injection, 500mg",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 008 - Amoxycillin Injection, 500mg.jpg"
   },
   {
-    "id": "re1",
-    "name": "Portable X-Ray Cassette",
-    "price": 749.0,
-    "category": "Radiology Equipment & Consumables",
-    "inventory": 14,
-    "image": "images/re1.png"
+    "id": "ph009",
+    "name": "Amphotericin B Injection, 50mg",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 009 - Amphotericin B Injection, 50mg.jpg"
   },
   {
-    "id": "re2",
-    "name": "Lead Apron (Radiation Protection)",
-    "price": 129.0,
-    "category": "Radiology Equipment & Consumables",
-    "inventory": 42,
-    "image": "images/re2.png"
+    "id": "ph010",
+    "name": "Antibiotic Ear Drops, 8ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 010 - Antibiotic Ear Drops, 8ml.jpg"
   },
   {
-    "id": "cos1",
-    "name": "Medical Grade Skin Moisturizer 100ml",
-    "price": 19.99,
+    "id": "ph011",
+    "name": "Aqueous Cream, 100g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 011 - Aqueous Cream, 100g.jpg"
+  },
+  {
+    "id": "ph012",
+    "name": "Aspirin Tablets, 100mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 012 - Aspirin Tablets, 100mg.jpg"
+  },
+  {
+    "id": "ph013",
+    "name": "Atracurium Bestylate 50mg or 5ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 013 - Atracurium Bestylate 50mg or 5ml.jpg"
+  },
+  {
+    "id": "ph014",
+    "name": "Atropine Sulphate Eye Ointment 1%. 4g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 014 - Atropine Sulphate Eye Ointment 1%. 4g.jpg"
+  },
+  {
+    "id": "ph015",
+    "name": "Atropine Sulphate Injuction, 0.6mg per 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 015 - Atropine Sulphate Injuction, 0.6mg per 1ml.jpg"
+  },
+  {
+    "id": "ph016",
+    "name": "Atropine Sulphate Injuction, 1.2mg per 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 016 - Atropine Sulphate Injuction, 1.2mg per 1ml.jpg"
+  },
+  {
+    "id": "ph017",
+    "name": "Azathioprine - Tablets, 50mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 017 - Azathioprine - Tablets, 50mg.jpg"
+  },
+  {
+    "id": "ph018",
+    "name": "Benzhexol Tablets, 2mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 018 - Benzhexol Tablets, 2mg.jpg"
+  },
+  {
+    "id": "ph019",
+    "name": "Benztopine Injection, 1mg per ml, 2ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 019 - Benztopine Injection, 1mg per ml, 2ml.jpg"
+  },
+  {
+    "id": "ph020",
+    "name": "Bromocriptine Tablets, 2.5mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 99,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 020 - Bromocriptine Tablets, 2.5mg.jpg"
+  },
+  {
+    "id": "ph021",
+    "name": "Calcium Gluconate Injection 10%, 10ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 021 - Calcium Gluconate Injection 10%, 10ml.jpg"
+  },
+  {
+    "id": "ph022",
+    "name": "Charcoal, Activated Solution 50g or 300ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 022 - Charcoal, Activated Solution 50g or 300ml.jpg"
+  },
+  {
+    "id": "ph023",
+    "name": "Chlorhexidine Hand Scrub, 4%, 500ml",
+    "price": 12.99,
     "category": "Cosmetics",
-    "inventory": 76,
-    "image": "images/cos1.png"
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 023 - Chlorhexidine Hand Scrub, 4%, 500ml.jpg"
   },
   {
-    "id": "cos2",
-    "name": "Antiseptic Hand Gel 250ml",
-    "price": 7.5,
-    "category": "Cosmetics",
-    "inventory": 185,
-    "image": "images/cos2.png"
+    "id": "ph024",
+    "name": "Chlorpromazine Syrup, 25mg per 5ml, 100ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 024 - Chlorpromazine Syrup, 25mg per 5ml, 100ml.jpg"
+  },
+  {
+    "id": "ph025",
+    "name": "Chlorpromazine Tablet, 25mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 025 - Chlorpromazine Tablet, 25mg.jpg"
+  },
+  {
+    "id": "ph026",
+    "name": "Colchicine Tablets,  0.5mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 026 - Colchicine Tablets,  0.5mg.jpg"
+  },
+  {
+    "id": "ph027",
+    "name": "Dexamethasone Eye Drop, 0.1%, 5ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 027 - Dexamethasone Eye Drop, 0.1%, 5ml.jpg"
+  },
+  {
+    "id": "ph028",
+    "name": "Dextrose Injection, 50%, 50ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 028 - Dextrose Injection, 50%, 50ml.jpg"
+  },
+  {
+    "id": "ph029",
+    "name": "Digoxin Elixir, 50mg per ml, 100ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 029 - Digoxin Elixir, 50mg per ml, 100ml.jpg"
+  },
+  {
+    "id": "ph030",
+    "name": "Docusate + Senna Tablets, 50mg per, 100ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 030 - Docusate + Senna Tablets, 50mg per, 100ml.jpg"
+  },
+  {
+    "id": "ph031",
+    "name": "Erythromycin Injection, 1g per 30ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 031 - Erythromycin Injection, 1g per 30ml.jpg"
+  },
+  {
+    "id": "ph032",
+    "name": "Flucloxacilling Injection, 250mg",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 032 - Flucloxacilling Injection, 250mg.jpg"
+  },
+  {
+    "id": "ph033",
+    "name": "Fluconazole Capsules, 50mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 033 - Fluconazole Capsules, 50mg.jpg"
+  },
+  {
+    "id": "ph034",
+    "name": "Fluconazole Susp, 50mg or 5ml, 100",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 034 - Fluconazole Susp, 50mg or 5ml, 100.jpg"
+  },
+  {
+    "id": "ph035",
+    "name": "Flucytosine Tablets, 500mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 035 - Flucytosine Tablets, 500mg.jpg"
+  },
+  {
+    "id": "ph036",
+    "name": "Fluoxetine Tablets 20mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 036 - Fluoxetine Tablets 20mg.jpg"
+  },
+  {
+    "id": "ph037",
+    "name": "Fluphenazine Decanoate Injection, 25mg per ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 037 - Fluphenazine Decanoate Injection, 25mg per ml.jpg"
+  },
+  {
+    "id": "ph038",
+    "name": "Fluorescein Eye Drops, 2%, 20 app",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 038 - Fluorescein Eye Drops, 2%, 20 app.jpg"
+  },
+  {
+    "id": "ph039",
+    "name": "Heparin Injection, 1000U per ml, 5ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 039 - Heparin Injection, 1000U per ml, 5ml.jpg"
+  },
+  {
+    "id": "ph040",
+    "name": "Hydralazine HCL Tablets, 25mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 040 - Hydralazine HCL Tablets, 25mg.jpg"
+  },
+  {
+    "id": "ph041",
+    "name": "Hydrocortisone Cream, 1%, 15g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 041 - Hydrocortisone Cream, 1%, 15g.jpg"
+  },
+  {
+    "id": "ph042",
+    "name": "Isoprenaline Injection 1;5000, 1ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 042 - Isoprenaline Injection 1;5000, 1ml.jpg"
+  },
+  {
+    "id": "ph043",
+    "name": "Mannitol Soln. 20%, 500ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 043 - Mannitol Soln. 20%, 500ml.jpg"
+  },
+  {
+    "id": "ph044",
+    "name": "Lignocaine Plain, 2%, 20ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 044 - Lignocaine Plain, 2%, 20ml.jpg"
+  },
+  {
+    "id": "ph045",
+    "name": "Lignocaine Plain, 2%, 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 045 - Lignocaine Plain, 2%, 2ml.jpg"
+  },
+  {
+    "id": "ph046",
+    "name": "Linnorine 100mm per 5ml (Xvincard 100)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 046 - Linnorine 100mm per 5ml (Xvincard 100).jpg"
+  },
+  {
+    "id": "ph047",
+    "name": "Lorazepam Tablets, 1mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 047 - Lorazepam Tablets, 1mg.jpg"
+  },
+  {
+    "id": "ph048",
+    "name": "Magnesium Hydroxide Mixture, 250ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 048 - Magnesium Hydroxide Mixture, 250ml.jpg"
+  },
+  {
+    "id": "ph049",
+    "name": "Methylprednisolone Acetate Injection, 40mg pre ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 049 - Methylprednisolone Acetate Injection, 40mg pre ml.jpg"
+  },
+  {
+    "id": "ph050",
+    "name": "Miconazole Cream 2%",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 050 - Miconazole Cream 2%.jpg"
+  },
+  {
+    "id": "ph051",
+    "name": "Midazolam Injection 15mg per 3ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 051 - Midazolam Injection 15mg per 3ml.jpg"
+  },
+  {
+    "id": "ph052",
+    "name": "Neostigmine Injection, 0.5mg per ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 052 - Neostigmine Injection, 0.5mg per ml.jpg"
+  },
+  {
+    "id": "ph053",
+    "name": "Neostigmine Injection, 2.mg per ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 053 - Neostigmine Injection, 2.mg per ml.jpg"
+  },
+  {
+    "id": "ph054",
+    "name": "Neostigmine Tablet, 15mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 054 - Neostigmine Tablet, 15mg.jpg"
+  },
+  {
+    "id": "ph055",
+    "name": "Nifedipine Capsules, 10mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 055 - Nifedipine Capsules, 10mg.jpg"
+  },
+  {
+    "id": "ph056",
+    "name": "Nifedipine S.R Tablets, 20mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 056 - Nifedipine S.R Tablets, 20mg.jpg"
+  },
+  {
+    "id": "ph057",
+    "name": "Nitrofurantoin Susp, 25mg per 5ml, 100ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 057 - Nitrofurantoin Susp, 25mg per 5ml, 100ml.jpg"
+  },
+  {
+    "id": "ph058",
+    "name": "(Oxy) Tetracycline Eye Ointment, 1%, 4g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 058 - (Oxy) Tetracycline Eye Ointment, 1%, 4g.jpg"
+  },
+  {
+    "id": "ph059",
+    "name": "Phenylephrine Spray",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 059 - Phenylephrine Spray.jpg"
+  },
+  {
+    "id": "ph060",
+    "name": "Phitomenadione Injection, 10mg per ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 060 - Phitomenadione Injection, 10mg per ml.jpg"
+  },
+  {
+    "id": "ph061",
+    "name": "Potesium Cloride Injection, 2g per 8ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 061 - Potesium Cloride Injection, 2g per 8ml.jpg"
+  },
+  {
+    "id": "ph062",
+    "name": "Povidone Iodine Scrub, 7.5%. 500ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 062 - Povidone Iodine Scrub, 7.5%. 500ml.jpg"
+  },
+  {
+    "id": "ph063",
+    "name": "Probenecid Tablets, 25mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 063 - Probenecid Tablets, 25mg.jpg"
+  },
+  {
+    "id": "ph064",
+    "name": "Propofol Injection, 10mg per ml, 20ml",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 064 - Propofol Injection, 10mg per ml, 20ml.jpg"
+  },
+  {
+    "id": "ph065",
+    "name": "Pyridoxine Tablets, 25mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 065 - Pyridoxine Tablets, 25mg.jpg"
+  },
+  {
+    "id": "ph066",
+    "name": "Simvastatin Tablets, 20mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 066 - Simvastatin Tablets, 20mg.jpg"
+  },
+  {
+    "id": "ph067",
+    "name": "Skin Swabbing Soln, 2L",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 067 - Skin Swabbing Soln, 2L.jpg"
+  },
+  {
+    "id": "ph068",
+    "name": "Soda Lime 3Kg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 068 - Soda Lime 3Kg.jpg"
+  },
+  {
+    "id": "ph069",
+    "name": "Sodium Valproate Tablet, 200mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 069 - Sodium Valproate Tablet, 200mg.jpg"
+  },
+  {
+    "id": "ph070",
+    "name": "Streptokinase Injection, 750,000IU",
+    "price": 18.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 070 - Streptokinase Injection, 750,000IU.jpg"
+  },
+  {
+    "id": "ph071",
+    "name": "Timolol Eye Drops, 0.5%, 5ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 071 - Timolol Eye Drops, 0.5%, 5ml.jpg"
+  },
+  {
+    "id": "ph072",
+    "name": "Trifluoperazine Tablets, 5mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 072 - Trifluoperazine Tablets, 5mg.jpg"
+  },
+  {
+    "id": "ph073",
+    "name": "Tropicamide Eye Drops, 1%, 15ml",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 073 - Tropicamide Eye Drops, 1%, 15ml.jpg"
+  },
+  {
+    "id": "ph074",
+    "name": "Vitamin A Concentrated Caps, 100,000IU",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 074 - Vitamin A Concentrated Caps, 100,000IU.jpg"
+  },
+  {
+    "id": "ph075",
+    "name": "Vitamin C Tablets, 50mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 075 - Vitamin C Tablets, 50mg.jpg"
+  },
+  {
+    "id": "ph076",
+    "name": "Warfarin Sodium Tablets, 5mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 076 - Warfarin Sodium Tablets, 5mg.jpg"
+  },
+  {
+    "id": "ph077",
+    "name": "Zinc Sulphate Tablets, 20mg",
+    "price": 15.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 077 - Zinc Sulphate Tablets, 20mg.jpg"
+  },
+  {
+    "id": "ph078",
+    "name": "Dressing Spray-On. Surgical, Prot, 180g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 078 - Dressing Spray-On. Surgical, Prot, 180g.jpg"
+  },
+  {
+    "id": "ph079",
+    "name": "Gauze Swab, Gr or Pl, 10 x 10cm, 100's",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 079 - Gauze Swab, Gr or Pl, 10 x 10cm, 100's.jpg"
+  },
+  {
+    "id": "ph080",
+    "name": "Plaster, Adhesive, Ext, 7.5cm x 3m",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 080 - Plaster, Adhesive, Ext, 7.5cm x 3m.jpg"
+  },
+  {
+    "id": "ph081",
+    "name": "Adult Daiper, Medium",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 081 - Adult Daiper, Medium.jpg"
+  },
+  {
+    "id": "ph082",
+    "name": "Adult Daiper, Large",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 082 - Adult Daiper, Large.jpg"
+  },
+  {
+    "id": "ph083",
+    "name": "Airway, Nasal, 6.0mm ID",
+    "price": 45.99,
+    "category": "Medical Equipment",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 083 - Airway, Nasal, 6.0mm ID.jpg"
+  },
+  {
+    "id": "ph084",
+    "name": "Airway, Nasal, 7.0mm ID",
+    "price": 45.99,
+    "category": "Medical Equipment",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 084 - Airway, Nasal, 7.0mm ID.jpg"
+  },
+  {
+    "id": "ph085",
+    "name": "Autoclaving With Indicator, 53 x 31cm. 100",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 085 - Autoclaving With Indicator, 53 x 31cm. 100.jpg"
+  },
+  {
+    "id": "ph086",
+    "name": "Bag, Hot Water, Fluted",
+    "price": 8.99,
+    "category": "Medical Equipment",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 086 - Bag, Hot Water, Fluted.jpg"
+  },
+  {
+    "id": "ph087",
+    "name": "Bag, Urine Collecting (CI System)",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 087 - Bag, Urine Collecting (CI System).jpg"
+  },
+  {
+    "id": "ph088",
+    "name": "Bag, Urine Collecting (Hr System)",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 088 - Bag, Urine Collecting (Hr System).jpg"
+  },
+  {
+    "id": "ph089",
+    "name": "Bottle, Disp, Clear (S-Ca-Wa), 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 089 - Bottle, Disp, Clear (S-Ca-Wa), 100ml.jpg"
+  },
+  {
+    "id": "ph090",
+    "name": "Bottle, Poi, Amber (S-Ca-Wa), 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 090 - Bottle, Poi, Amber (S-Ca-Wa), 100ml.jpg"
+  },
+  {
+    "id": "ph091",
+    "name": "Catheter. Forgety (Embolect), 4FR",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 091 - Catheter. Forgety (Embolect), 4FR.jpg"
+  },
+  {
+    "id": "ph092",
+    "name": "Catheter Suction, Y Shaped, 6FG",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 092 - Catheter Suction, Y Shaped, 6FG.jpg"
+  },
+  {
+    "id": "ph093",
+    "name": "Catheter Suction, Y Shaped, 8FG",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 093 - Catheter Suction, Y Shaped, 8FG.jpg"
+  },
+  {
+    "id": "ph094",
+    "name": "Catheter Suction, -Y- Shaped, 12FG",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 094 - Catheter Suction, -Y- Shaped, 12FG.jpg"
+  },
+  {
+    "id": "ph095",
+    "name": "Silicon Catheters 8FG 2Ways Catheter",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 095 - Silicon Catheters 8FG 2Ways Catheter.jpg"
+  },
+  {
+    "id": "ph096",
+    "name": "Clamp, Hysterectomy",
+    "price": 45.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 096 - Clamp, Hysterectomy.jpg"
+  },
+  {
+    "id": "ph097",
+    "name": "Collector, Urine Paediatric",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 097 - Collector, Urine Paediatric.jpg"
+  },
+  {
+    "id": "ph098",
+    "name": "Electocardiograph, Electrol Adult",
+    "price": 45.99,
+    "category": "Medical Equipment",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 098 - Electocardiograph, Electrol Adult.jpg"
+  },
+  {
+    "id": "ph099",
+    "name": "Central Venous Catherization Kit, Size 12G",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 099 - Central Venous Catherization Kit, Size 12G.jpg"
+  },
+  {
+    "id": "ph100",
+    "name": "Central Venous Catherization Kit, Size 14G",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 100 - Central Venous Catherization Kit, Size 14G.jpg"
+  },
+  {
+    "id": "ph101",
+    "name": "Central Venous Catherization Kit, Size 16G",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 101 - Central Venous Catherization Kit, Size 16G.jpg"
+  },
+  {
+    "id": "ph102",
+    "name": "Central Venous Catherization Kit, Size 18G",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 102 - Central Venous Catherization Kit, Size 18G.jpg"
+  },
+  {
+    "id": "ph103",
+    "name": "Extractor, mucous, Disposable",
+    "price": 45.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 103 - Extractor, mucous, Disposable.jpg"
+  },
+  {
+    "id": "ph104",
+    "name": "Face Mask, Anaesthetic With Adult Tapper And Hook, Size 2",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 104 - Face Mask, Anaesthetic With Adult Tapper And Hook, Size 2.jpg"
+  },
+  {
+    "id": "ph105",
+    "name": "Face Mask, Anaesthetic With Adult Tapper And Hook, Size 3",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 105 - Face Mask, Anaesthetic With Adult Tapper And Hook, Size 3.jpg"
+  },
+  {
+    "id": "ph106",
+    "name": "Face Mask, Anaesthetic With Adult Tapper And Hook, Size 4",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 106 - Face Mask, Anaesthetic With Adult Tapper And Hook, Size 4.jpg"
+  },
+  {
+    "id": "ph107",
+    "name": "Face Mask, Anaesthetic With Adult Tapper And Hook, Size 5",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 107 - Face Mask, Anaesthetic With Adult Tapper And Hook, Size 5.jpg"
+  },
+  {
+    "id": "ph108",
+    "name": "Face Mask, Anaesthetic, Child's Randell-Baker, Size 1",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 108 - Face Mask, Anaesthetic, Child's Randell-Baker, Size 1.jpg"
+  },
+  {
+    "id": "ph109",
+    "name": "Face Mask, Anaesthetic, Child's Randell-Baker, Size 2",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 109 - Face Mask, Anaesthetic, Child's Randell-Baker, Size 2.jpg"
+  },
+  {
+    "id": "ph110",
+    "name": "Face Mask, Anaesthetic, Child's Randell-Baker, Size 3",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 110 - Face Mask, Anaesthetic, Child's Randell-Baker, Size 3.jpg"
+  },
+  {
+    "id": "ph111",
+    "name": "I.V. Cannula 3 Ways Tap",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 111 - I.V. Cannula 3 Ways Tap.jpg"
+  },
+  {
+    "id": "ph112",
+    "name": "Mask Oxygen, Spare Rebreathing Bag, Size 0.5L",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 112 - Mask Oxygen, Spare Rebreathing Bag, Size 0.5L.jpg"
+  },
+  {
+    "id": "ph113",
+    "name": "Mask Oxygen, Spare Rebreathing Bag, Size 2L",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 113 - Mask Oxygen, Spare Rebreathing Bag, Size 2L.jpg"
+  },
+  {
+    "id": "ph114",
+    "name": "Nebulizer",
+    "price": 75.99,
+    "category": "Medical Equipment",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 114 - Nebulizer.jpg"
+  },
+  {
+    "id": "ph115",
+    "name": "Mask, Child",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 115 - Mask, Child.jpg"
+  },
+  {
+    "id": "ph116",
+    "name": "Needle, Hypodermic Standard Bevel Luer, Size 22SWG X 15-26in (0.71 x 30mm)",
+    "price": 5.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 116 - Needle, Hypodermic Standard Bevel Luer, Size 22SWG X 15-26in (0.71 x 30mm).jpg"
+  },
+  {
+    "id": "ph117",
+    "name": "Needle, Hypodermic Standard Bevel Luer, Size 20SWG X 15-26in (0.71 x 30mm)",
+    "price": 5.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 117 - Needle, Hypodermic Standard Bevel Luer, Size 20SWG X 15-26in (0.71 x 30mm).jpg"
+  },
+  {
+    "id": "ph118",
+    "name": "Needle, Hypodermic Standard Bevel Luer, Size 18SWG X 15-26in (0.71 x 30mm)",
+    "price": 5.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 118 - Needle, Hypodermic Standard Bevel Luer, Size 18SWG X 15-26in (0.71 x 30mm).jpg"
+  },
+  {
+    "id": "ph119",
+    "name": "Stop Cock, 3Way, Sterile",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 119 - Stop Cock, 3Way, Sterile.jpg"
+  },
+  {
+    "id": "ph120",
+    "name": "Syringe Disposable, Offset Nozzle, 0.5ml",
+    "price": 5.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 120 - Syringe Disposable, Offset Nozzle, 0.5ml.jpg"
+  },
+  {
+    "id": "ph121",
+    "name": "Syringe Disposable, Offset Nozzle, 50ml",
+    "price": 5.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 121 - Syringe Disposable, Offset Nozzle, 50ml.jpg"
+  },
+  {
+    "id": "ph122",
+    "name": "Ryles Tubes, Size 8",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 122 - Ryles Tubes, Size 8.jpg"
+  },
+  {
+    "id": "ph123",
+    "name": "Ryles Tubes, Size 10",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 123 - Ryles Tubes, Size 10.jpg"
+  },
+  {
+    "id": "ph124",
+    "name": "Ryles Tubes, Size 12",
+    "price": 8.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 124 - Ryles Tubes, Size 12.jpg"
+  },
+  {
+    "id": "ph125",
+    "name": "Refrigerator Temperature Chat",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 125 - Refrigerator Temperature Chat.jpg"
+  },
+  {
+    "id": "ph126",
+    "name": "Glucose In Blood, 100 Strips",
+    "price": 12.99,
+    "category": "Laboratory Diagnostic Kits",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 126 - Glucose In Blood, 100 Strips.jpg"
+  },
+  {
+    "id": "ph127",
+    "name": "Slides Microscope, 2.5 x 8cm, Plain, 10's",
+    "price": 25.99,
+    "category": "Laboratory Diagnostic Kits",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 127 - Slides Microscope, 2.5 x 8cm, Plain, 10's.jpg"
+  },
+  {
+    "id": "ph128",
+    "name": "Glucometer, Advantage Or Omnitest Plus",
+    "price": 89.99,
+    "category": "Laboratory Diagnostic Kits",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 128 - Glucometer, Advantage Or Omnitest Plus.jpg"
+  },
+  {
+    "id": "ph129",
+    "name": "Glucometer, Advantage Or Omnitest Plus Test Strips, 50's",
+    "price": 89.99,
+    "category": "Laboratory Diagnostic Kits",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 129 - Glucometer, Advantage Or Omnitest Plus Test Strips, 50's.jpg"
+  },
+  {
+    "id": "ph130",
+    "name": "Cup, Sputum, Disposable",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 130 - Cup, Sputum, Disposable.jpg"
+  },
+  {
+    "id": "ph131",
+    "name": "Gloves, Examination, Latex Rubber, Large",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 131 - Gloves, Examination, Latex Rubber, Large.jpg"
+  },
+  {
+    "id": "ph132",
+    "name": "Gloves, Examination, Latex Rubber, Medium",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 132 - Gloves, Examination, Latex Rubber, Medium.jpg"
+  },
+  {
+    "id": "ph133",
+    "name": "Gloves, Examination, Latex Rubber, Small",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 133 - Gloves, Examination, Latex Rubber, Small.jpg"
+  },
+  {
+    "id": "ph134",
+    "name": "Gloves, Surgeon, Latex Rubber, Sterile, Size 7",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 134 - Gloves, Surgeon, Latex Rubber, Sterile, Size 7.jpg"
+  },
+  {
+    "id": "ph135",
+    "name": "Gloves, Surgeon, Latex Rubber, Sterile, Size 7.5",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 135 - Gloves, Surgeon, Latex Rubber, Sterile, Size 7.5.jpg"
+  },
+  {
+    "id": "ph136",
+    "name": "Intravenous Administration Set",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 136 - Intravenous Administration Set.jpg"
+  },
+  {
+    "id": "ph137",
+    "name": "Paediatric Measuring Unit (Burette)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 137 - Paediatric Measuring Unit (Burette).jpg"
+  },
+  {
+    "id": "ph138",
+    "name": "Medicine Measure, Polythene, 50 or 60ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 138 - Medicine Measure, Polythene, 50 or 60ml.jpg"
+  },
+  {
+    "id": "ph139",
+    "name": "Needle, Standard Bevel Luer Fiting, Sterile, Size 18SWG x 1.5in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 139 - Needle, Standard Bevel Luer Fiting, Sterile, Size 18SWG x 1.5in.jpg"
+  },
+  {
+    "id": "ph140",
+    "name": "Needle, Standard Bevel Luer Fiting, Sterile, Size 20SWG x 1.5in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 140 - Needle, Standard Bevel Luer Fiting, Sterile, Size 20SWG x 1.5in.jpg"
+  },
+  {
+    "id": "ph141",
+    "name": "Needle, Standard Bevel Luer Fiting, Sterile, Size 22SWG x 1.5in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 141 - Needle, Standard Bevel Luer Fiting, Sterile, Size 22SWG x 1.5in.jpg"
+  },
+  {
+    "id": "ph142",
+    "name": "Needle, Standard Bevel Luer Fiting, Sterile, Size 24SWG x 1.5in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 142 - Needle, Standard Bevel Luer Fiting, Sterile, Size 24SWG x 1.5in.jpg"
+  },
+  {
+    "id": "ph143",
+    "name": "Needle, Standard Bevel Luer Fiting, Sterile, Size 26SWG x 1.5in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 143 - Needle, Standard Bevel Luer Fiting, Sterile, Size 26SWG x 1.5in.jpg"
+  },
+  {
+    "id": "ph144",
+    "name": "Operating Mask, Disposable, Fibre Type",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 144 - Operating Mask, Disposable, Fibre Type.jpg"
+  },
+  {
+    "id": "ph145",
+    "name": "Pins, Safety",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 145 - Pins, Safety.jpg"
+  },
+  {
+    "id": "ph146",
+    "name": "Scalp Vein Needle Set,Sterile Disposable, Size 21SWG x 3 quarter in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 146 - Scalp Vein Needle Set,Sterile Disposable, Size 21SWG x 3 quarter in.jpg"
+  },
+  {
+    "id": "ph147",
+    "name": "Scalp Vein Needle Set,Sterile Disposable, Size 22SWG x 3 quarter in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 147 - Scalp Vein Needle Set,Sterile Disposable, Size 22SWG x 3 quarter in.jpg"
+  },
+  {
+    "id": "ph148",
+    "name": "Scalp Vein Needle Set,Sterile Disposable, Size 23SWG x 3 quarter in",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 148 - Scalp Vein Needle Set,Sterile Disposable, Size 23SWG x 3 quarter in.jpg"
+  },
+  {
+    "id": "ph149",
+    "name": "Scalpel Blade, Sterile, Size 10",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 149 - Scalpel Blade, Sterile, Size 10.jpg"
+  },
+  {
+    "id": "ph150",
+    "name": "Scalpel Blade, Sterile, Size 11",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 150 - Scalpel Blade, Sterile, Size 11.jpg"
+  },
+  {
+    "id": "ph151",
+    "name": "Scalpel Blade, Sterile, Size 20",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 151 - Scalpel Blade, Sterile, Size 20.jpg"
+  },
+  {
+    "id": "ph152",
+    "name": "Scalpel Blade, Sterile, Size 22",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 152 - Scalpel Blade, Sterile, Size 22.jpg"
+  },
+  {
+    "id": "ph153",
+    "name": "Scalpel Blade, Sterile, Size 24",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 153 - Scalpel Blade, Sterile, Size 24.jpg"
+  },
+  {
+    "id": "ph154",
+    "name": "scalpel Handle No.3 (For Blades Sizes 10-15)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 154 - scalpel Handle No.3 (For Blades Sizes 10-15).jpg"
+  },
+  {
+    "id": "ph155",
+    "name": "scalpel Handle No.3 (For Blades Sizes 20-24)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 155 - scalpel Handle No.3 (For Blades Sizes 20-24).jpg"
+  },
+  {
+    "id": "ph156",
+    "name": "Silk, Black, Braided, 100ml Spools, Metric Size 3.5",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 156 - Silk, Black, Braided, 100ml Spools, Metric Size 3.5.jpg"
+  },
+  {
+    "id": "ph157",
+    "name": "Silk, Black, Braided, 100ml Spools, Metric Size 3",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 157 - Silk, Black, Braided, 100ml Spools, Metric Size 3.jpg"
+  },
+  {
+    "id": "ph158",
+    "name": "Silk, Black, Braided, 100ml Spools, Metric Size 4",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 158 - Silk, Black, Braided, 100ml Spools, Metric Size 4.jpg"
+  },
+  {
+    "id": "ph159",
+    "name": "Silk, Black, Braided (0). Metric Size 3.5 With Straight 60mm Reverse Cutting Needle, 12s per Box",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 159 - Silk, Black, Braided (0). Metric Size 3.5 With Straight 60mm Reverse Cutting Needle, 12s per Box.jpg"
+  },
+  {
+    "id": "ph160",
+    "name": "Syringe, Disposable, Offset Nozzle, 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 160 - Syringe, Disposable, Offset Nozzle, 1ml.jpg"
+  },
+  {
+    "id": "ph161",
+    "name": "Syringe, Disposable, Offset Nozzle, 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 161 - Syringe, Disposable, Offset Nozzle, 2ml.jpg"
+  },
+  {
+    "id": "ph162",
+    "name": "Syringe, Disposable, Offset Nozzle, 5ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 162 - Syringe, Disposable, Offset Nozzle, 5ml.jpg"
+  },
+  {
+    "id": "ph163",
+    "name": "Syringe, Disposable, Offset Nozzle, 10ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 163 - Syringe, Disposable, Offset Nozzle, 10ml.jpg"
+  },
+  {
+    "id": "ph164",
+    "name": "Syringe, Disposable, Offset Nozzle, 20ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 164 - Syringe, Disposable, Offset Nozzle, 20ml.jpg"
+  },
+  {
+    "id": "ph165",
+    "name": "Thermometer, Clinical, Centrigrade",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 165 - Thermometer, Clinical, Centrigrade.jpg"
+  },
+  {
+    "id": "ph166",
+    "name": "Tube, Nasal, Infant Feeding (4-6FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 166 - Tube, Nasal, Infant Feeding (4-6FG).jpg"
+  },
+  {
+    "id": "ph167",
+    "name": "Tube, Nasal, Infant Feeding (8-9FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 167 - Tube, Nasal, Infant Feeding (8-9FG).jpg"
+  },
+  {
+    "id": "ph168",
+    "name": "Chlorpromazine Injection 2.5mg or ml, 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 168 - Chlorpromazine Injection 2.5mg or ml, 2ml.jpg"
+  },
+  {
+    "id": "ph169",
+    "name": "Chlorpromazine Tablets, 100mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 169 - Chlorpromazine Tablets, 100mg.jpg"
+  },
+  {
+    "id": "ph170",
+    "name": "Chlorpromazine Tablets, 25mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 170 - Chlorpromazine Tablets, 25mg.jpg"
+  },
+  {
+    "id": "ph171",
+    "name": "Codeine Phosphate Tablets, 30mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 171 - Codeine Phosphate Tablets, 30mg.jpg"
+  },
+  {
+    "id": "ph172",
+    "name": "Diphenhydramine Elixir, 120ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 172 - Diphenhydramine Elixir, 120ml.jpg"
+  },
+  {
+    "id": "ph173",
+    "name": "Petthidine Injection 50mg or ml in 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 173 - Petthidine Injection 50mg or ml in 2ml.jpg"
+  },
+  {
+    "id": "ph174",
+    "name": "Pethidine Injection 50mg or ml in 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 174 - Pethidine Injection 50mg or ml in 1ml.jpg"
+  },
+  {
+    "id": "ph175",
+    "name": "Pehnobarbitone Sodium Inj, 200mg or ml in 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 175 - Pehnobarbitone Sodium Inj, 200mg or ml in 1ml.jpg"
+  },
+  {
+    "id": "ph176",
+    "name": "Phenobarbitone Tablet, 30mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 176 - Phenobarbitone Tablet, 30mg.jpg"
+  },
+  {
+    "id": "ph177",
+    "name": "Acriflavine Emulsion, 2L.jpeg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 177 - Acriflavine Emulsion, 2L.jpeg"
+  },
+  {
+    "id": "ph178",
+    "name": "Acriflavine 1% in Alcohol Solution, 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 178 - Acriflavine 1% in Alcohol Solution, 100ml.jpg"
+  },
+  {
+    "id": "ph179",
+    "name": "Albendazole Tablets, 200mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 179 - Albendazole Tablets, 200mg.jpg"
+  },
+  {
+    "id": "ph180",
+    "name": "Aluminium Hydroxide Gel Compound Tabs",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 180 - Aluminium Hydroxide Gel Compound Tabs.jpg"
+  },
+  {
+    "id": "ph181",
+    "name": "Aminophylline IVI. 250mg in 10ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 181 - Aminophylline IVI. 250mg in 10ml.jpg"
+  },
+  {
+    "id": "ph182",
+    "name": "Aminophylline Tablets, 100mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 182 - Aminophylline Tablets, 100mg.jpg"
+  },
+  {
+    "id": "ph183",
+    "name": "Amoxycillin Capsules, 500mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 183 - Amoxycillin Capsules, 500mg.jpg"
+  },
+  {
+    "id": "ph184",
+    "name": "Amoxycillin Dispersible Tablets, 125mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 184 - Amoxycillin Dispersible Tablets, 125mg.jpg"
+  },
+  {
+    "id": "ph185",
+    "name": "Amoxycillin Syrup, 125mg or 5ml, 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 185 - Amoxycillin Syrup, 125mg or 5ml, 100ml.jpg"
+  },
+  {
+    "id": "ph186",
+    "name": "Amoxycilline Tablets, 250mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 186 - Amoxycilline Tablets, 250mg.jpg"
+  },
+  {
+    "id": "ph187",
+    "name": "Amoxycillin 500mg + Clavulanic Acid 125mg Tablets",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 187 - Amoxycillin 500mg + Clavulanic Acid 125mg Tablets.jpg"
+  },
+  {
+    "id": "ph188",
+    "name": "Antibitic Compund Eye Ointment, 5g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 188 - Antibitic Compund Eye Ointment, 5g.jpg"
+  },
+  {
+    "id": "ph189",
+    "name": "Antiseptic Ointment, 25g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 189 - Antiseptic Ointment, 25g.jpg"
+  },
+  {
+    "id": "ph190",
+    "name": "Artemether Injection 40mg or ml, in 1ml,6's per Pkt",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 190 - Artemether Injection 40mg or ml, in 1ml,6's per Pkt.jpg"
+  },
+  {
+    "id": "ph191",
+    "name": "Artemether Injection, 80mg or ml, in 1ml, 6's per Pkt",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 191 - Artemether Injection, 80mg or ml, in 1ml, 6's per Pkt.jpg"
+  },
+  {
+    "id": "ph192",
+    "name": "Aspirin Tablets, 300mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 192 - Aspirin Tablets, 300mg.jpg"
+  },
+  {
+    "id": "ph193",
+    "name": "Azithromycin Tablets, 500mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 193 - Azithromycin Tablets, 500mg.jpg"
+  },
+  {
+    "id": "ph194",
+    "name": "Boric Acid,  3% in Alcohol Ear Drops, 15ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 194 - Boric Acid,  3% in Alcohol Ear Drops, 15ml.jpg"
+  },
+  {
+    "id": "ph195",
+    "name": "Catheter I.V. Placements, Size 22",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 195 - Catheter I.V. Placements, Size 22.jpg"
+  },
+  {
+    "id": "ph196",
+    "name": "Chloramphenicol Capsules, 250mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 196 - Chloramphenicol Capsules, 250mg.jpg"
+  },
+  {
+    "id": "ph197",
+    "name": "Chloramphenicol Sodium Succinate Inj, 1g, 50's per Box",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 197 - Chloramphenicol Sodium Succinate Inj, 1g, 50's per Box.jpg"
+  },
+  {
+    "id": "ph198",
+    "name": "Chlorhexidine Compound Antiseptic",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 198 - Chlorhexidine Compound Antiseptic.jpg"
+  },
+  {
+    "id": "ph199",
+    "name": "Contraceptive Condom - Female",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 199 - Contraceptive Condom - Female.jpg"
+  },
+  {
+    "id": "ph200",
+    "name": "Contraceptive Condom - Male.jpeg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 200 - Contraceptive Condom - Male.jpeg"
+  },
+  {
+    "id": "ph201",
+    "name": "Contraceptvie Tablets (Microgynon ED), 28 tablets per Packet",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 201 - Contraceptvie Tablets (Microgynon ED), 28 tablets per Packet.jpg"
+  },
+  {
+    "id": "ph202",
+    "name": "Contraceptive Tablets ( Levonogestrel 30mcg) 28  Tablets per Packet.jpeg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 202 - Contraceptive Tablets ( Levonogestrel 30mcg) 28  Tablets per Packet.jpeg"
+  },
+  {
+    "id": "ph203",
+    "name": "Contraceptive Injection, 150mg (Depo Provera)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 203 - Contraceptive Injection, 150mg (Depo Provera).jpg"
+  },
+  {
+    "id": "ph204",
+    "name": "Co-trimoxazole Suspension Paediatric, 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 204 - Co-trimoxazole Suspension Paediatric, 100ml.jpg"
+  },
+  {
+    "id": "ph205",
+    "name": "Co-Trimoxazole Tablets, 80mg, 400mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 205 - Co-Trimoxazole Tablets, 80mg, 400mg.jpg"
+  },
+  {
+    "id": "ph206",
+    "name": "crystal Violet Aqueous Solution. 1%, 500ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 206 - crystal Violet Aqueous Solution. 1%, 500ml.jpg"
+  },
+  {
+    "id": "ph207",
+    "name": "DoxycyclineTablets, 100mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 207 - DoxycyclineTablets, 100mg.jpg"
+  },
+  {
+    "id": "ph208",
+    "name": "Egometrine Maleate Injection, 0.5 in 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 208 - Egometrine Maleate Injection, 0.5 in 1ml.jpg"
+  },
+  {
+    "id": "ph209",
+    "name": "Erythromycin Suspension, 125mg or 5ml. 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 209 - Erythromycin Suspension, 125mg or 5ml. 100ml.jpg"
+  },
+  {
+    "id": "ph210",
+    "name": "Erythromycin Tablets, 250mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 210 - Erythromycin Tablets, 250mg.jpg"
+  },
+  {
+    "id": "ph211",
+    "name": "Ferrous Sulphate 200mg & Folic Acid 25mg Tablets",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 211 - Ferrous Sulphate 200mg & Folic Acid 25mg Tablets.jpg"
+  },
+  {
+    "id": "ph212",
+    "name": "Flucloxacillin Capsules, 250mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 212 - Flucloxacillin Capsules, 250mg.jpg"
+  },
+  {
+    "id": "ph213",
+    "name": "Flucloxacillin Injection, 500mg, 6's per Box",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 213 - Flucloxacillin Injection, 500mg, 6's per Box.jpg"
+  },
+  {
+    "id": "ph214",
+    "name": "Flucloxacillin Suspension 125mg or 5ml, 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 214 - Flucloxacillin Suspension 125mg or 5ml, 100ml.jpg"
+  },
+  {
+    "id": "ph215",
+    "name": "Gentamicin Injection Paediatric, 20mg in 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 215 Gentamicin Injection Paediatric, 20mg in 2ml.jpg"
+  },
+  {
+    "id": "ph216",
+    "name": "Gentamicin Injection, 80mg in 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 216 - Gentamicin Injection, 80mg in 2ml.jpg"
+  },
+  {
+    "id": "ph217",
+    "name": "Glycerin & Ichthamol, 10%, 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 217 - Glycerin & Ichthamol, 10%, 100ml.jpg"
+  },
+  {
+    "id": "ph218",
+    "name": "Hydrocortisone Sodium Succinate Injection. 100mg with Diluent.jpeg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 218 - Hydrocortisone Sodium Succinate Injection. 100mg with Diluent.jpeg"
+  },
+  {
+    "id": "ph219",
+    "name": "Hyoscine Butylbromide Injection, 20mg in 1ml (Buscopan).jpeg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 219 - Hyoscine Butylbromide Injection, 20mg in 1ml (Buscopan).jpeg"
+  },
+  {
+    "id": "ph220",
+    "name": "Indomethacin Capsules or Tablets, 25mg.jpeg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 220 - Indomethacin Capsules or Tablets, 25mg.jpeg"
+  },
+  {
+    "id": "ph221",
+    "name": "Dextrose 2.5% in Half Strength Darrow's Solution, 500ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 221 - Dextrose 2.5% in Half Strength Darrow's Solution, 500ml.jpg"
+  },
+  {
+    "id": "ph222",
+    "name": "Dextrose 4.3% in 0.18% Sodium Chloride, 1l",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 222 - Dextrose 4.3% in 0.18% Sodium Chloride, 1l.jpg"
+  },
+  {
+    "id": "ph223",
+    "name": "Dextrose Solution 5%, 1l",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 223 - Dextrose Solution 5%, 1l.jpg"
+  },
+  {
+    "id": "ph224",
+    "name": "Sodium Chloride Injection, 0.9%, 1l",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 224 - Sodium Chloride Injection, 0.9%, 1l.jpg"
+  },
+  {
+    "id": "ph225",
+    "name": "Ketoconazole Tablets, 200mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 225 - Ketoconazole Tablets, 200mg.jpg"
+  },
+  {
+    "id": "ph226",
+    "name": "Lignocaine Injection, Plain, 0.5%, 5ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 226 - Lignocaine Injection, Plain, 0.5%, 5ml.jpg"
+  },
+  {
+    "id": "ph227",
+    "name": "Lignocaine Injection, Plain, 1%, 20ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 227 - Lignocaine Injection, Plain, 1%, 20ml.jpg"
+  },
+  {
+    "id": "ph228",
+    "name": "Lubricant. Surgical. Sterile. 60g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 228 - Lubricant. Surgical. Sterile. 60g.jpg"
+  },
+  {
+    "id": "ph229",
+    "name": "Metoclopramide Injection. 10mg in 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 229 - Metoclopramide Injection. 10mg in 2ml.jpg"
+  },
+  {
+    "id": "ph230",
+    "name": "Metronizadole Tablets, 200mg or 250mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 230 - Metronizadole Tablets, 200mg or 250mg.jpg"
+  },
+  {
+    "id": "ph231",
+    "name": "Product 231",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 0,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 231 -Nystatin Oral Suspension 100.000IU or ml, 50ml.jpg"
+  },
+  {
+    "id": "ph232",
+    "name": "Oral Rehydration Solution Powder Form (ORS)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 232 - Oral Rehydration Solution Powder Form (ORS).jpg"
+  },
+  {
+    "id": "ph233",
+    "name": "Oxytocin Injection, 5IU in 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 233 - Oxytocin Injection, 5IU in 1ml.jpg"
+  },
+  {
+    "id": "ph234",
+    "name": "Paracetamol Elixir . 125mg or 5ml. 100ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 234 - Paracetamol Elixir . 125mg or 5ml. 100ml.jpg"
+  },
+  {
+    "id": "ph235",
+    "name": "Paracetamol Tablet, 500mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 235 - Paracetamol Tablet, 500mg.jpg"
+  },
+  {
+    "id": "ph236",
+    "name": "Paracetamol Suppositories, 125mg , 20's per Box",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 236 - Paracetamol Suppositories, 125mg , 20's per Box.jpg"
+  },
+  {
+    "id": "ph237",
+    "name": "Paracetamol Suppositories, 250mg, 20s per Box",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 237 - Paracetamol Suppositories, 250mg, 20s per Box.jpg"
+  },
+  {
+    "id": "ph238",
+    "name": "Paraldehyde IMI, 5ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 238 - Paraldehyde IMI, 5ml.jpg"
+  },
+  {
+    "id": "ph239",
+    "name": "Penicillin, Benzathine Injection, 2.4mega",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 239 - Penicillin, Benzathine Injection, 2.4mega.jpg"
+  },
+  {
+    "id": "ph240",
+    "name": "Penicillin, Benzyl Injection, 600mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 240 - Penicillin, Benzyl Injection, 600mg.jpg"
+  },
+  {
+    "id": "ph241",
+    "name": "Phenytoin Tablets. 100mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 241 - Phenytoin Tablets. 100mg.jpg"
+  },
+  {
+    "id": "ph242",
+    "name": "Pythomenadione Inj, 1ml in 0.5ml or 1ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 242 - Pythomenadione Inj, 1ml in 0.5ml or 1ml.jpg"
+  },
+  {
+    "id": "ph243",
+    "name": "Potassium Tablets, Slow Release, 600mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 243 - Potassium Tablets, Slow Release, 600mg.jpg"
+  },
+  {
+    "id": "ph244",
+    "name": "Povidone Iodine Scrub, 7.5%, 500ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 244 - Povidone Iodine Scrub, 7.5%, 500ml.jpg"
+  },
+  {
+    "id": "ph245",
+    "name": "Prednisolone Tablets, 5mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 245 - Prednisolone Tablets, 5mg.jpg"
+  },
+  {
+    "id": "ph246",
+    "name": "Primaquine Tablets, 7.5mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 246 - Primaquine Tablets, 7.5mg.jpg"
+  },
+  {
+    "id": "ph247",
+    "name": "Probenecid Tablets, 500mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 247 - Probenecid Tablets, 500mg.jpg"
+  },
+  {
+    "id": "ph248",
+    "name": "Promethazine Injection, 2.5%, 25mg or ml, 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 248 - Promethazine Injection, 2.5%, 25mg or ml, 2ml.jpg"
+  },
+  {
+    "id": "ph249",
+    "name": "Promethazine Tablet, 25mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 249 - Promethazine Tablet, 25mg.jpg"
+  },
+  {
+    "id": "ph250",
+    "name": "Quinine Dihydrochloride Injection, 120mg in 2ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 250 - Quinine Dihydrochloride Injection, 120mg in 2ml.jpg"
+  },
+  {
+    "id": "ph251",
+    "name": "Quinine Tablets, 300mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 251 - Quinine Tablets, 300mg.jpg"
+  },
+  {
+    "id": "ph252",
+    "name": "Quinine Dehydrochloride Inj, 600mg in 10ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 252 - Quinine Dehydrochloride Inj, 600mg in 10ml.jpg"
+  },
+  {
+    "id": "ph253",
+    "name": "Salbutamol Aerosol Spray, Complete",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 253 - Salbutamol Aerosol Spray, Complete.jpg"
+  },
+  {
+    "id": "ph254",
+    "name": "Salbutamol Nebulizer Ampoules, 2.5mg or 2.5ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 254 - Salbutamol Nebulizer Ampoules, 2.5mg or 2.5ml.jpg"
+  },
+  {
+    "id": "ph255",
+    "name": "Salbutamol Tablets,4mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 255 - Salbutamol Tablets,4mg.jpg"
+  },
+  {
+    "id": "ph256",
+    "name": "Scabies or Head Lice Lotion,2L",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 256 - Scabies or Head Lice Lotion,2L.jpg"
+  },
+  {
+    "id": "ph257",
+    "name": "Silver Sulphadiazine Cream 1% ,500mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 257 - Silver Sulphadiazine Cream 1% ,500mg.jpg"
+  },
+  {
+    "id": "ph258",
+    "name": "Skin Swab, Alcohol,Sterile",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 258 - Skin Swab, Alcohol,Sterile.jpg"
+  },
+  {
+    "id": "ph259",
+    "name": "Sulphadoxine with Pyrimethamine 25mg Tablets",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 259 - Sulphadoxine with Pyrimethamine 25mg Tablets.jpg"
+  },
+  {
+    "id": "ph260",
+    "name": "Trinidazole Tablets , 500mg",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 260 - Trinidazole Tablets , 500mg.jpg"
+  },
+  {
+    "id": "ph261",
+    "name": "Vitamin Multiple Liquid. 50ml",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 261 - Vitamin Multiple Liquid. 50ml.jpg"
+  },
+  {
+    "id": "ph262",
+    "name": "Water For Injection, 10ml, 50's per Box",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 262 - Water For Injection, 10ml, 50's per Box.jpg"
+  },
+  {
+    "id": "ph263",
+    "name": "Artemeter 20mg + Lumefantrine 120mg Tablet (Mala 1) 6's per Packet",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 263 - Artemeter 20mg + Lumefantrine 120mg Tablet (Mala 1) 6's per Packet.jpg"
+  },
+  {
+    "id": "ph264",
+    "name": "Artemeter 20mg + Lumefantrine 120mg Tablet (Mala 1) 12s's per Packet",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 264 - Artemeter 20mg + Lumefantrine 120mg Tablet (Mala 1) 12s's per Packet.jpg"
+  },
+  {
+    "id": "ph265",
+    "name": "Artemether 20mg + Lumefentrine 120mg Tablet (Mala 1) 18's per Pkt",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 265 - Artemether 20mg + Lumefentrine 120mg Tablet (Mala 1) 18's per Pkt.jpg"
+  },
+  {
+    "id": "ph266",
+    "name": "Artemether 20mg + Lumefantrine 120mg Tablet (Mala 1) 24's per Pkt",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 266 - Artemether 20mg + Lumefantrine 120mg Tablet (Mala 1) 24's per Pkt.jpg"
+  },
+  {
+    "id": "ph267",
+    "name": "Rapid Diagnostic Test (RDT) 25 Tests",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 267 - Rapid Diagnostic Test (RDT) 25 Tests.jpg"
+  },
+  {
+    "id": "ph268",
+    "name": "Bandage, Calico, 10cm x 4m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 268 - Bandage, Calico, 10cm x 4m.jpg"
+  },
+  {
+    "id": "ph269",
+    "name": "Bandage Crepe, 8cm",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 269 - Bandage Crepe, 8cm.jpg"
+  },
+  {
+    "id": "ph270",
+    "name": "Bandage, Elastic Plaster 8cm x 5m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 270 - Bandage, Elastic Plaster 8cm x 5m.jpg"
+  },
+  {
+    "id": "ph271",
+    "name": "Bandage, Gauze, W.O.W, 5cm x 4m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 271 - Bandage, Gauze, W.O.W, 5cm x 4m.jpg"
+  },
+  {
+    "id": "ph272",
+    "name": "Bandage, Gauze, 10m x 4m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 272 - Bandage, Gauze, 10m x 4m.jpg"
+  },
+  {
+    "id": "ph273",
+    "name": "Bandage, Plaster of Paris 10cm",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 273 - Bandage, Plaster of Paris 10cm.jpg"
+  },
+  {
+    "id": "ph274",
+    "name": "Bandage, Plaster of Paris 10cm",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 274 - Bandage, Plaster of Paris 10cm.jpg"
+  },
+  {
+    "id": "ph275",
+    "name": "Bandage, Plaster of Paris 15cm",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 275 - Bandage, Plaster of Paris 15cm.jpg"
+  },
+  {
+    "id": "ph276",
+    "name": "Bandage, Suspension Medium (75-95cm Waist)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 276 - Bandage, Suspension Medium (75-95cm Waist).jpg"
+  },
+  {
+    "id": "ph277",
+    "name": "Bandage, Suspension Medium (55-75cm Waist)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 277 - Bandage, Suspension Medium (55-75cm Waist).jpg"
+  },
+  {
+    "id": "ph278",
+    "name": "Bandage, Triangular",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 278 - Bandage, Triangular.jpg"
+  },
+  {
+    "id": "ph279",
+    "name": "Combine Dressing, 9cm x 10m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 279 - Combine Dressing, 9cm x 10m.jpg"
+  },
+  {
+    "id": "ph280",
+    "name": "Combine, Dressing, 20cm x 10m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 280 - Combine, Dressing, 20cm x 10m.jpg"
+  },
+  {
+    "id": "ph281",
+    "name": "Cotton Wool, Absorbent, 500g",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 281 - Cotton Wool, Absorbent, 500g.jpg"
+  },
+  {
+    "id": "ph282",
+    "name": "Gauze, Absorbent, 100cm x 6m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 282 - Gauze, Absorbent, 100cm x 6m.jpg"
+  },
+  {
+    "id": "ph283",
+    "name": "Gauze, Absorbent, 100cm x 100m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 283 - Gauze, Absorbent, 100cm x 100m.jpg"
+  },
+  {
+    "id": "ph284",
+    "name": "Napkins, Sanitary",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 284 - Napkins, Sanitary.jpg"
+  },
+  {
+    "id": "ph285",
+    "name": "Paraffin Gauze Dressing, Sterile, 10 x 10cm, 36's",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 285 - Paraffin Gauze Dressing, Sterile, 10 x 10cm, 36's.jpg"
+  },
+  {
+    "id": "ph286",
+    "name": "Parrafin Gauze Dressing, Sterile, 10 x 8cm",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 286 - Parrafin Gauze Dressing, Sterile, 10 x 8cm.jpg"
+  },
+  {
+    "id": "ph287",
+    "name": "Plaster, Adhesive, 2.5cm x 5m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 287 - Plaster, Adhesive, 2.5cm x 5m.jpg"
+  },
+  {
+    "id": "ph288",
+    "name": "Plaster, Adhesive, 7.5cm x 10m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 288 - Plaster, Adhesive, 7.5cm x 10m.jpg"
+  },
+  {
+    "id": "ph289",
+    "name": "Wadding, Orthopaedic, 10cm x 3m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 289 - Wadding, Orthopaedic, 10cm x 3m.jpg"
+  },
+  {
+    "id": "ph290",
+    "name": "Wadding, Orthopaedic, 15cm x 3m",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 290 - Wadding, Orthopaedic, 15cm x 3m.jpg"
+  },
+  {
+    "id": "ph291",
+    "name": "Applicators, Wooden",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 291 - Applicators, Wooden.jpg"
+  },
+  {
+    "id": "ph292",
+    "name": "Bag, Dispensing, Clear Polythene, Resealable With ''Write On Panel",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 292 - Bag, Dispensing, Clear Polythene, Resealable With ''Write On Panel.jpg"
+  },
+  {
+    "id": "ph293",
+    "name": "Bag, Urine Collecting, 2L",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 293 - Bag, Urine Collecting, 2L.jpg"
+  },
+  {
+    "id": "ph294",
+    "name": "Catheter, I.V. Placements, Size 18",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 294 - Catheter, I.V. Placements, Size 18.jpg"
+  },
+  {
+    "id": "ph295",
+    "name": "Catheter I.V. Placements, Size 20",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 295 - Catheter I.V. Placements, Size 20.jpg"
+  },
+  {
+    "id": "ph296",
+    "name": "Catheter, I.V. Placement, Size 24",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 296 - Catheter, I.V. Placement, Size 24.jpg"
+  },
+  {
+    "id": "ph297",
+    "name": "Catheter, Nasal, Oxygen (8or9FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 297 - Catheter, Nasal, Oxygen (8or9FG).jpg"
+  },
+  {
+    "id": "ph298",
+    "name": "Catheter, Nasal, Oxygen (11 or 12FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 298 - Catheter, Nasal, Oxygen (11 or 12FG).jpg"
+  },
+  {
+    "id": "ph299",
+    "name": "Catheter, Suction, Nelation (8FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 299 - Catheter, Suction, Nelation (8FG).jpg"
+  },
+  {
+    "id": "ph300",
+    "name": "Catheter, Suction, Nelation (12FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 300 - Catheter, Suction, Nelation (12FG).jpg"
+  },
+  {
+    "id": "ph301",
+    "name": "Catheter, Urine Foley. 10ml Balloon (12FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 301 - Catheter, Urine Foley. 10ml Balloon (12FG).jpg"
+  },
+  {
+    "id": "ph302",
+    "name": "Catheter, Urine Foley, 10ml Balloon (14FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 302 - Catheter, Urine Foley, 10ml Balloon (14FG).jpg"
+  },
+  {
+    "id": "ph303",
+    "name": "Catheter, Urine Foley. 10ml Balloon (16FG)",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 303 - Catheter, Urine Foley. 10ml Balloon (16FG).jpg"
+  },
+  {
+    "id": "ph304",
+    "name": "Clamp, Umblical, Sterile, Disposable",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 304 - Clamp, Umblical, Sterile, Disposable.jpg"
+  },
+  {
+    "id": "ph305",
+    "name": "Contraceptive, Implant",
+    "price": 12.99,
+    "category": "Pharmaceuticals Drugs & Surgical Consumables",
+    "inventory": 100,
+    "image": "images/Pharmaceutical Item List (001 - 129)/Item 305 - Contraceptive, Implant.jpg"
   }
 ]

@@ -80,7 +80,7 @@
             <div class="payment-details">
               <p><strong>Customer:</strong> ${p.username || 'Unknown'} ${p.email ? `(${p.email})` : ''}</p>
               <p><strong>Total:</strong> PGK ${p.total.toFixed(2)}</p>
-              <p><strong>Created:</strong> ${new Date(p.createdAt).toLocaleString()}</p>
+              <p><strong>Created:</strong> ${new Date(p.created_at).toLocaleString()}</p>
               <p class="items-list"><strong>Items:</strong> ${p.items.map(i => `${i.quantity}x ${i.name}`).join(', ')}</p>
             </div>
             ${p.fileName ? `<img src="/PaymentsDB/${p.fileName}" alt="Payment proof" class="payment-image" onerror="this.style.display='none'">

@@ -1,19 +1,36 @@
 /* JS: add to your script area (after DOM elements) */
 
+
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileClose');
 
-  function openMobileMenu(){
+function openMobileMenu(){
     if(!mobileMenu) return;
     mobileMenu.style.display = 'flex';
     mobileMenu.setAttribute('aria-hidden','false');
-    hamburgerBtn.setAttribute('aria-expanded','true');
+    hamburgerBtn && hamburgerBtn.setAttribute('aria-expanded','true');
     mobileClose && mobileClose.focus();
     document.body.style.overflow = 'hidden';
-    // Ensure UI is updated when menu opens
-    checkAuthUI();
-  }
+
+    // Robust: re-init auth state from storage + verify with backend (if enabled)
+    setTimeout(async () => {
+      try {
+        // Refresh local auth flags first
+        initAuthState();
+
+        // If we think backend mode is enabled, confirm session with backend.
+        // This avoids stale "guest" UI when localStorage exists but session isn't yet synced.
+        if (useBackend) {
+          await checkSession();
+        }
+      } catch (e) {
+        // ignore; UI will fall back to local auth values
+      }
+      checkAuthUI();
+    }, 0);
+}
+
 
   function closeMobileMenu(){
     if(!mobileMenu) return;
@@ -25,7 +42,12 @@
   }
 
   hamburgerBtn && hamburgerBtn.addEventListener('click', openMobileMenu);
-  mobileClose && mobileClose.addEventListener('click', closeMobileMenu);
+  mobileClose && mobileClose.addEventListener('click', (e) => {
+    // Prevent other overlay/outside-click handlers from consuming the click
+    e.stopPropagation();
+    closeMobileMenu();
+  }, true);
+
 
   mobileMenu && mobileMenu.addEventListener('click', (e) => {
     if(e.target === mobileMenu) closeMobileMenu();
@@ -51,24 +73,27 @@
      }
    }
    
-    function closeChatDropdown() {
+function closeChatDropdown() {
        const chatDropdown = document.getElementById('chat-dropdown');
        if (!chatDropdown) return;
        stopChatPolling();
        chatDropdown.style.display = 'none';
-      chatDropdown.style.top = '';
-      chatDropdown.style.right = '';
-      chatDropdown.style.left = '';
-      chatDropdown.style.bottom = '';
-      chatDropdown.style.borderRadius = '';
+       chatDropdown.style.top = '';
+       chatDropdown.style.right = '';
+       chatDropdown.style.left = '';
+       chatDropdown.style.bottom = '';
+       chatDropdown.style.borderRadius = '';
        chatDropdown.style.position = '';
        chatDropdown.style.width = '';
        chatDropdown.style.height = '';
        chatDropdown.style.zIndex = '';
-      chatDropdown.setAttribute('aria-hidden', 'true');
-     const chatBtn = document.getElementById('chat-btn');
-     if (chatBtn) chatBtn.setAttribute('aria-expanded', 'false');
-   }
+       chatDropdown.setAttribute('aria-hidden', 'true');
+       const chatBtn = document.getElementById('chat-btn');
+       if (chatBtn) chatBtn.setAttribute('aria-expanded', 'false');
+       // Blur any focused element inside the dropdown
+       const focusedElement = chatDropdown.querySelector(':focus');
+       if (focusedElement) focusedElement.blur();
+    }
    
    function toggleChatDropdown() {
      const chatDropdown = document.getElementById('chat-dropdown');
@@ -454,6 +479,7 @@ window.openChat = openChat;
 window.closeChatDropdown = closeChatDropdown;
 window.performMobileSearch = performMobileSearch;
 window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
 window.generateInvoice = generateInvoice;
 window.checkout = checkout;
 window.logout = logout;
@@ -462,6 +488,11 @@ window.socialLogin = socialLogin;
 window.socialAuth = socialAuth;
 window.closeLoginPromptModal = closeLoginPromptModal;
 window.checkAuthUI = checkAuthUI;
+window.closeConfirmModal = closeConfirmModal;
+window.openConfirmModal = openConfirmModal;
+window.closeCartPanel = closeCartPanel;
+window.closeImageViewer = closeImageViewer;
+window.closePaymentModal = closePaymentModal;
 
   function performMobileSearch(){
     const mobileQuery = document.getElementById('mobile-search-bar')?.value || '';
@@ -501,6 +532,12 @@ window.checkAuthUI = checkAuthUI;
       mainSearchInput.value = mobileSearchInput.value;
       handleSearchInput();
     });
+    mobileSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        performMobileSearch();
+      }
+    });
   }
   const mainCategory = document.getElementById('category-filter');
   const mobileCategory = document.getElementById('mobile-category-filter');
@@ -530,7 +567,7 @@ window.checkAuthUI = checkAuthUI;
     mobileSortBy.addEventListener('change', () => { mainSortBy.value = mobileSortBy.value; performSearch(); });
   }
 
-// Products and cart state
+  // Products and cart state
 let allProducts = [];
 let cartItems = 0;
 const cart = {};
@@ -542,6 +579,81 @@ let useBackend = false;
 let sessionId = null;
 let currentUser = null;
 
+function escapeHtml(value) {
+  if (value == null) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Encode image paths from products.json safely for the browser.
+// products.json contains folder/file names with spaces, parentheses, semicolons, apostrophes, etc.
+// Without encoding, some image URLs 404.
+function encodePathForSrc(p) {
+  if (!p || typeof p !== 'string') return p;
+
+  return p.split('/').map((seg) => encodeURIComponent(seg)).join('/');
+}
+
+// Fix: ensure any image paths from products.json load correctly.
+// Some product.image values may be missing leading slashes or may include backslashes.
+function normalizeImageSrc(src) {
+  if (!src || typeof src !== 'string') return src;
+
+  // Replace Windows path separators.
+  let normalized = src.replace(/\\/g, '/');
+
+  // Ensure leading slash if path is relative to server root.
+  if (!normalized.startsWith('/')) normalized = '/' + normalized;
+
+  // Encode each path segment so that spaces, parentheses, %, semicolons, etc. are safe.
+  normalized = encodePathForSrc(normalized);
+
+  return normalized;
+}
+
+function isLikelyImageUrl(src) {
+  if (!src || typeof src !== 'string') return false;
+  return /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(src);
+}
+
+// Centralized image helpers (fix broken images due to encoding/paths)
+function setImageSrc(imgEl, rawSrc, alt) {
+  if (!imgEl) return;
+
+  const finalSrc = normalizeImageSrc(rawSrc);
+  if (alt && typeof alt === 'string') imgEl.alt = alt;
+  imgEl.src = finalSrc;
+}
+
+function addImageErrorFallback(imgEl, rawSrc, alt) {
+  if (!imgEl || typeof rawSrc !== 'string') return;
+
+  // Prevent infinite loops
+  if (imgEl.dataset.imageFallbackApplied === 'true') return;
+  imgEl.dataset.imageFallbackApplied = 'true';
+
+  imgEl.addEventListener('error', function onImgError() {
+    // Retry once with normalized path
+    const normalized = normalizeImageSrc(rawSrc);
+    if (imgEl.src !== normalized) {
+      imgEl.src = normalized;
+      return;
+    }
+
+    // If still failing, hide the broken image (or leave a placeholder)
+    imgEl.style.display = 'none';
+    imgEl.removeEventListener('error', onImgError);
+  }, { once: true });
+}
+
+
+
+
+
 // Authentication functions
 function getCurrentUser() {
   return currentUser;
@@ -549,6 +661,31 @@ function getCurrentUser() {
 
 function isAuthenticated() {
   return !!currentUser;
+}
+
+// Initialize auth state from localStorage on page load
+function initAuthState() {
+  const token = localStorage.getItem('auth_token');
+  const username = localStorage.getItem('username');
+  const profilePic = localStorage.getItem('profile_pic');
+  const storedSessionId = localStorage.getItem(sessionKey);
+  
+  if (token && username) {
+    currentUser = {
+      token: token,
+      username: username,
+      role: localStorage.getItem('user_role') || 'user',
+      profilePic: profilePic || null
+    };
+    // Restore session ID if it exists
+    if (storedSessionId) {
+      sessionId = storedSessionId;
+    }
+    useBackend = true;
+  } else {
+    currentUser = null;
+    useBackend = false;
+  }
 }
 
 function getSessionId() {
@@ -570,21 +707,43 @@ async function checkSession() {
     const data = await response.json();
     
     if (data.authenticated) {
-      currentUser = data.user;
-      localStorage.setItem('auth_token', data.user?.token || '');
-      localStorage.setItem('user_role', data.user?.role || 'user');
-      localStorage.setItem('username', data.user?.username || '');
+      // Backend returns user fields but may not include token.
+      // Preserve existing auth_token so UI remains logged-in.
+      const existingToken = localStorage.getItem('auth_token');
+      const backendUser = data.user || {};
+
+      currentUser = {
+        ...backendUser,
+        token: backendUser.token || existingToken || null
+      };
+
+      if (existingToken) {
+        localStorage.setItem('auth_token', existingToken);
+      }
+      
+      localStorage.setItem('user_role', backendUser.role || 'user');
+      // Backend uses username; login.html stores username into this key.
+      localStorage.setItem('username', backendUser.username || '');
+      
+      // Backend stores profile picture as profile_pic (underscore)
+      if (backendUser.profile_pic) localStorage.setItem('profile_pic', backendUser.profile_pic);
+
       return true;
     } else {
       currentUser = null;
+      // Keep useBackend = true so addToCart still requires auth
       localStorage.removeItem('auth_token');
+      localStorage.removeItem(sessionKey);
       return false;
     }
   } catch (error) {
     currentUser = null;
+    // Keep useBackend = true so addToCart still requires auth
     return false;
   }
 }
+
+
 
 async function loginWithBackend(username, password) {
   try {
@@ -595,15 +754,16 @@ async function loginWithBackend(username, password) {
     });
     const data = await response.json();
     
-    if (data.success) {
-      sessionId = data.sessionId;
-      localStorage.setItem(sessionKey, sessionId);
-      localStorage.setItem('auth_token', data.token);
-      localStorage.setItem('user_role', data.role);
-      localStorage.setItem('username', data.username);
-      currentUser = data;
-      useBackend = true;
-      return { success: true, user: data };
+if (data.success) {
+       sessionId = data.sessionId;
+       localStorage.setItem(sessionKey, sessionId);
+       localStorage.setItem('auth_token', data.token);
+       localStorage.setItem('user_role', data.role);
+       localStorage.setItem('username', data.username);
+       if (data.profilePic) localStorage.setItem('profile_pic', data.profilePic);
+       currentUser = data;
+       useBackend = true;
+       return { success: true, user: data };
     } else {
       return { success: false, message: data.message };
     }
@@ -685,6 +845,16 @@ if (data.success) {
       localStorage.removeItem('user_role');
       localStorage.removeItem('username');
       localStorage.removeItem(sessionKey);
+
+      // Reset cart/in-memory state (guest should start empty)
+      Object.keys(cart).forEach(key => delete cart[key]);
+      proformaGenerated = false;
+      cartItems = 0;
+
+      // Clear any locally persisted cart state
+      localStorage.removeItem(cartStorageKey);
+      localStorage.removeItem(proformaStorageKey);
+
       // Close any open menus/dropdowns
       closeMobileMenu();
       closeChatDropdown();
@@ -693,7 +863,11 @@ if (data.success) {
       // Update UI to reflect guest state
       checkAuthUI();
       showToast('Logged out successfully.', 2000);
+
+      // Hard reset UI/cart so state is consistent (prevents stale backend-mode cart state)
+      window.location.href = 'index.html';
     } catch (error) {
+
       console.error('Unexpected error in logout function:', error);
       // Even if there's an error, try to update UI to logged out state
       try {
@@ -793,18 +967,30 @@ function socialAuth(provider) {
   async function fetchCartState() {
     try {
       const response = await fetch('/api/cart', { headers: getApiHeaders() });
+      if (response.status === 401) {
+        // User not authenticated - use local storage
+        loadCartFromStorage();
+        return;
+      }
       if (!response.ok) throw new Error('Failed to load cart state');
       const data = await response.json();
+
+      // Important: backend cart must be the single source of truth in backend mode.
+      // This prevents stale local cart entries from showing up after login/refresh.
       Object.keys(cart).forEach(key => delete cart[key]);
       Object.entries(data.cart || {}).forEach(([productId, quantity]) => {
         cart[productId] = quantity;
       });
       updateCartCount();
+      renderCartPanel();
+
     } catch (error) {
       console.error('Failed to fetch cart state:', error);
       loadCartFromStorage();
+      renderCartPanel();
     }
   }
+
 
   function updateProductsFromBackend(products) {
     allProducts = products || [];
@@ -862,14 +1048,15 @@ function socialAuth(provider) {
       if (!product) return '';
       const subtotal = product.price * quantity;
       return `
-        <div class="cart-item">
-          <img src="${product.image}" alt="${product.name}" class="cart-item-image" loading="lazy">
+      <div class="cart-item">
+          <img src="${normalizeImageSrc(product.image)}" alt="${escapeHtml(product.name)}" class="cart-item-image" loading="lazy" data-raw-src="${escapeHtml(product.image)}" data-img-alt="${escapeHtml(product.name)}" onerror="this.onerror=null; this.style.display='none';">
+
           <div class="cart-item-info">
-            <div class="cart-item-title">${product.name}</div>
+            <div class="cart-item-title">${escapeHtml(product.name)}</div>
             <div class="cart-item-meta">${quantity} × PGK ${product.price.toFixed(2)}</div>
           </div>
           <div class="cart-item-subtotal">PGK ${subtotal.toFixed(2)}</div>
-          <button class="cart-item-remove" onclick="removeFromCart('${productId}')" aria-label="Remove ${product.name} from cart">
+          <button class="cart-item-remove" onclick="removeFromCart('${escapeHtml(productId)}')" aria-label="Remove ${escapeHtml(product.name)} from cart">
             <i class="fas fa-trash"></i>
           </button>
         </div>
@@ -907,10 +1094,22 @@ function socialAuth(provider) {
       };
 
       const processRemoveRequest = async () => {
-        if (!useBackend) {
+        // Check authentication before allowing cart modifications
+        if (useBackend) {
+          try {
+            await checkSession();
+          } catch (e) { /* ignore */ }
+
+          if (!isAuthenticated()) {
+            showLoginPrompt('cart');
+            return;
+          }
+        } else {
+          // useBackend = false only in true offline mode
           removeLocalItem();
           return;
         }
+
         try {
           const response = await fetch('/api/cart/remove', {
             method: 'POST',
@@ -992,16 +1191,40 @@ function socialAuth(provider) {
   }
 
 function closeConfirmModal() {
-   const modal = document.getElementById('confirm-modal');
-   if (!modal) return;
-   modal.style.display = 'none';
-   modal.setAttribute('aria-hidden', 'true');
-   document.body.style.overflow = '';
- }
+    const modal = document.getElementById('confirm-modal');
+    if (!modal) return;
+
+    // Accessibility fix: avoid setting aria-hidden while focus is still inside.
+    // Blur any focused element within the modal first.
+    const focusedElement = modal.querySelector(':focus');
+    if (focusedElement) {
+      try {
+        focusedElement.blur();
+      } catch (e) {}
+    }
+
+    // As a safety net, move focus to body immediately after blur.
+    try {
+      if (document.activeElement && modal.contains(document.activeElement)) {
+        document.activeElement.blur();
+      }
+    } catch (e) {}
+
+    try {
+      if (document.body) document.body.focus?.();
+    } catch (e) {}
+
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
 
   function closeLoginPromptModal() {
     const modal = document.getElementById('login-prompt-modal');
     if (!modal) return;
+    const focusedElement = modal.querySelector(':focus');
+    if (focusedElement) focusedElement.blur();
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -1018,8 +1241,6 @@ function checkAuthUI() {
   const mobileUserStatus = document.getElementById('mobile-user-status');
   const mobileAccountBtn = document.getElementById('mobile-account-btn');
   const mobileAccountContent = document.getElementById('mobile-account-content');
-  const googleBtn = document.querySelector('.mobile-actions .google');
-  const facebookBtn = document.querySelector('.mobile-actions .facebook');
 
   if (authToken && username) {
     // Update desktop UI
@@ -1048,9 +1269,6 @@ function checkAuthUI() {
       `;
       mobileAccountContent.style.display = 'block';
     }
-    // Hide social login buttons in mobile menu
-    if (googleBtn) googleBtn.style.display = 'none';
-    if (facebookBtn) facebookBtn.style.display = 'none';
   } else {
     // Update desktop UI
     if (userInfo) userInfo.textContent = 'Not logged in (Guest)';
@@ -1070,9 +1288,6 @@ function checkAuthUI() {
       `;
       mobileAccountContent.style.display = 'block';
     }
-    // Show social login buttons in mobile menu
-    if (googleBtn) googleBtn.style.display = 'block';
-    if (facebookBtn) facebookBtn.style.display = 'block';
   }
 }
 
@@ -1284,68 +1499,264 @@ function openCart() {
 function closeCartPanel() {
     const cartPanel = document.getElementById('cart-panel');
     if (!cartPanel) return;
+    // Blur any focused element inside the panel before hiding
+    const focusedElement = cartPanel.querySelector(':focus');
+    if (focusedElement) focusedElement.blur();
     cartPanel.style.display = 'none';
     cartPanel.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
 // Load products from JSON file
-    async function loadProducts() {
-      try {
-        const response = await fetch('/api/products');
-        if (!response.ok) throw new Error('Failed to load products');
-        const products = await response.json();
-        updateProductsFromBackend(products);
-        useBackend = true;
-        // Check if user is logged in (for backend mode)
-        await checkSession();
-        await fetchCartState();
-        renderAllProducts();
-      } catch (error) {
-       console.warn('API product load failed, falling back to local data:', error);
-       useBackend = false;
+     async function loadProducts() {
        try {
-         const response = await fetch('ProductsDB/products.json');
-         if (!response.ok) throw new Error('Failed to load local products');
+         const response = await fetch('/api/products');
+         if (!response.ok) throw new Error('Failed to load products');
          const products = await response.json();
          updateProductsFromBackend(products);
-         loadCartFromStorage();
-         renderAllProducts();
-       } catch (fallbackError) {
-         console.error('Error loading products from local JSON:', fallbackError);
-         const noResults = document.getElementById('no-results');
-         if (noResults) {
-           noResults.style.display = 'block';
-           noResults.innerHTML = '<strong>⚠ Unable to load products</strong><br>Please refresh the page or try again later.';
+         useBackend = true;
+         // Check if user is logged in (for backend mode)
+         const sessionValid = await checkSession();
+         // Always try to restore cart UI from storage first (so refresh won't drop items)
+         // then sync with backend cart if session is valid.
+         // If backend mode is enabled but user is a guest, cart must be empty.
+         if (sessionValid) {
+           // Load guest cart from storage only for real backend-authenticated session sync.
+           loadCartFromStorage();
+           await fetchCartState();
+         } else {
+           // Backend says unauthenticated: wipe any local cart so UI doesn't show guest additions.
+           Object.keys(cart).forEach(key => delete cart[key]);
+           proformaGenerated = false;
+           updateCartCount();
+           // Ensure mobile UI also closes/updates if the cart panel is open
+           closeCartPanel();
+           renderCartPanel();
          }
-       }
-     }
-   }
+
+         renderAllProducts();
+       } catch (error) {
+        console.warn('API product load failed, falling back to local data:', error);
+        // Preserve auth state on fallback
+        const hadAuth = !!currentUser;
+        try {
+          const response = await fetch('ProductsDB/products.json');
+          if (!response.ok) throw new Error('Failed to load local products');
+          const products = await response.json();
+          updateProductsFromBackend(products);
+          // Keep backend mode enabled - auth is always required for cart operations.
+          useBackend = true;
+          // Never restore cart or disable backend mode for guests.
+          if (!hadAuth) {
+            Object.keys(cart).forEach(key => delete cart[key]);
+            proformaGenerated = false;
+            updateCartCount();
+            renderCartPanel();
+          } else {
+            loadCartFromStorage();
+          }
+          renderAllProducts();
+        } catch (fallbackError) {
+          console.error('Error loading products from local JSON:', fallbackError);
+          const noResults = document.getElementById('no-results');
+          if (noResults) {
+            noResults.style.display = 'block';
+            noResults.innerHTML = '<strong>⚠ Unable to load products</strong><br>Please refresh the page or try again later.';
+          }
+        }
+      }
+    }
 
   // Render all products initially
   const lowStockThreshold = 10;
 
-  function renderAllProducts() {
+  // Pagination state (20 products per page)
+  const PRODUCTS_PER_PAGE = 20;
+  let currentPage = 1;
+  let lastFilteredProducts = null;
+
+  function renderProductCard(product, query) {
+    const stockText = product.inventory > 0 ? `${product.inventory} in stock` : 'Out of stock';
+    const stockClass = product.inventory > 0 ? 'stock-label' : 'stock-label out-of-stock';
+    const lowStockBadge = product.inventory > 0 && product.inventory <= lowStockThreshold ? '<div class="low-stock">Low stock</div>' : '';
+    const actionButton = product.inventory > 0
+      ? `<button class="add-to-cart" onclick="addToCart('${product.id}')">Add to Cart</button>`
+      : `<button class="add-to-cart out-of-stock" disabled>Out of stock</button>`;
+
+    let name = product.name;
+    if (query) {
+      const regex = new RegExp(`(${query})`, 'gi');
+      name = name.replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    const productDiv = document.createElement('div');
+    productDiv.className = 'product';
+    productDiv.innerHTML = `
+      <div class="product-image-wrap" data-image="${escapeHtml(product.image)}" data-title="${escapeHtml(product.name)}">
+        <img src="${normalizeImageSrc(product.image)}" alt="${escapeHtml(product.name)}" class="product-image" style="width:100%; height:140px; object-fit:cover; border-radius:8px; background:#ddd; margin-bottom:8px;" onerror="this.onerror=null; this.style.display='none';">
+
+        <span class="image-zoom-icon" aria-hidden="true">🔍</span>
+      </div>
+      <div style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">${name}</div>
+      <small style="color:#0a4d92; display:block; margin-bottom:6px;">${product.category}</small>
+      <div style="font-weight:700; font-size:1.1rem; color:#111; margin-bottom:8px;">PGK ${product.price.toFixed(2)}</div>
+      <div class="${stockClass}" style="margin-bottom:6px;">${stockText}</div>
+      ${lowStockBadge}
+      ${actionButton}
+    `;
+    return productDiv;
+  }
+
+  function renderPaginationControls(totalItems) {
+    const paginationTopEl = document.getElementById('pagination');
+    const paginationBottomEl = document.getElementById('pagination-bottom');
+    if (!paginationTopEl || !paginationBottomEl) return;
+
+    const totalPages = Math.max(1, Math.ceil(totalItems / PRODUCTS_PER_PAGE));
+    currentPage = Math.min(Math.max(1, currentPage), totalPages);
+
+    const start = (currentPage - 1) * PRODUCTS_PER_PAGE + 1;
+    const end = Math.min(totalItems, currentPage * PRODUCTS_PER_PAGE);
+
+    const PAGES_WINDOW = 5;
+    // Determine which page numbers to show (up to 5) and keep them centered around currentPage.
+    let windowStart = Math.max(1, currentPage - Math.floor(PAGES_WINDOW / 2));
+    let windowEnd = Math.min(totalPages, windowStart + PAGES_WINDOW - 1);
+    windowStart = Math.max(1, windowEnd - PAGES_WINDOW + 1);
+
+    const pageButtonsHtml = [];
+    for (let p = windowStart; p <= windowEnd; p++) {
+      pageButtonsHtml.push(
+        `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goToPage(${p})" ${p === currentPage ? 'aria-current="page"' : ''}>${p}</button>`
+      );
+    }
+
+    const html = `
+      <button class="page-btn" onclick="goToPage(1)" ${currentPage <= 1 ? 'disabled' : ''}>First</button>
+      <button class="page-btn" onclick="goToPrevPage()" ${currentPage <= 1 ? 'disabled' : ''}>Previous</button>
+      ${pageButtonsHtml.join('')}
+      <button class="page-btn" onclick="goToPage(${totalPages})" ${currentPage >= totalPages ? 'disabled' : ''}>Last</button>
+      <span class="page-status" style="color:#ccc; font-weight:800; padding:0 4px; font-size:0.85em;">Page ${currentPage} of ${totalPages} (${start}-${end} of ${totalItems})</span>
+      <button class="page-btn" onclick="goToNextPage()" ${currentPage >= totalPages ? 'disabled' : ''}>Next</button>
+    `;
+
+    paginationTopEl.innerHTML = html;
+    paginationBottomEl.innerHTML = html;
+  }
+
+  function goToPage(pageNum) {
+    const source = lastFilteredProducts || allProducts;
+    const totalPages = Math.max(1, Math.ceil(source.length / PRODUCTS_PER_PAGE));
+    const target = Math.min(Math.max(1, pageNum), totalPages);
+    if (target === currentPage) return;
+    currentPage = target;
+    renderCurrentPage();
+    scrollToTop();
+  }
+
+
+  function renderCurrentPage() {
     const productsSection = document.getElementById('products');
+    if (!productsSection) return;
+
+    const query = (document.getElementById('search-bar')?.value || '').toLowerCase().trim();
+    const source = lastFilteredProducts || allProducts;
+    const totalItems = source.length;
+
     productsSection.innerHTML = '';
 
+    // Keep pagination immediately below the results count (top) + also show it at bottom
+    const paginationTopEl = document.getElementById('pagination');
+    const paginationBottomEl = document.getElementById('pagination-bottom');
+    const resultsCountEl = document.getElementById('results-count');
+
+    if (paginationTopEl && resultsCountEl) {
+      const resultsBar = document.getElementById('results-bar');
+      if (resultsBar) resultsBar.insertAdjacentElement('afterend', paginationTopEl);
+    }
+
+    if (paginationBottomEl) {
+      paginationBottomEl.innerHTML = paginationTopEl ? paginationTopEl.innerHTML : '';
+      // Only place it after the product section once
+      const productsSection = document.getElementById('products');
+      if (productsSection && !productsSection.nextElementSibling?.id?.includes('pagination-bottom')) {
+        productsSection.insertAdjacentElement('afterend', paginationBottomEl);
+      }
+    }
+
+
+
+    if (totalItems === 0) {
+      document.getElementById('no-results').style.display = 'block';
+      return;
+    }
+    document.getElementById('no-results').style.display = 'none';
+
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    const pageItems = source.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+
+    pageItems.forEach(p => productsSection.appendChild(renderProductCard(p, query || null)));
+
+    renderPaginationControls(totalItems);
+
+    const resultText = totalItems === 1 ? 'result' : 'results';
+    const label = lastFilteredProducts ? `Showing ${totalItems} ${resultText}` : `Showing all ${totalItems} products`;
+    document.getElementById('results-count').textContent = label;
+  }
+
+  function scrollToTop() {
+    // Scroll the page content to the top when paginating.
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function goToPrevPage() {
+    if (currentPage <= 1) return;
+    currentPage -= 1;
+    renderCurrentPage();
+    scrollToTop();
+  }
+
+  function goToNextPage() {
+    const source = lastFilteredProducts || allProducts;
+    const totalPages = Math.max(1, Math.ceil(source.length / PRODUCTS_PER_PAGE));
+    if (currentPage >= totalPages) return;
+    currentPage += 1;
+    renderCurrentPage();
+    scrollToTop();
+  }
+
+
+
+  function renderAllProducts() {
+    lastFilteredProducts = null;
+    currentPage = 1;
+    document.getElementById('no-results').style.display = 'none';
+    renderCurrentPage();
+  
+    // NOTE: legacy full-render implementation removed for pagination.
+    return;
+  
     allProducts.forEach(product => {
       const stockText = product.inventory > 0 ? `${product.inventory} in stock` : 'Out of stock';
       const stockClass = product.inventory > 0 ? 'stock-label' : 'stock-label out-of-stock';
       const lowStockBadge = product.inventory > 0 && product.inventory <= lowStockThreshold ? '<div class="low-stock">Low stock</div>' : '';
       const actionButton = product.inventory > 0
-        ? `<button class="add-to-cart" onclick="addToCart('${product.id}')">Add to Cart</button>`
+        ? `<button class="add-to-cart" onclick="addToCart('${escapeHtml(product.id)}')">Add to Cart</button>`
         : `<button class="add-to-cart out-of-stock" disabled>Out of stock</button>`;
 
       const productDiv = document.createElement('div');
       productDiv.className = 'product';
       productDiv.innerHTML = `
-        <div class="product-image-wrap" data-image="${product.image}" data-title="${product.name.replace(/"/g, '&quot;')}">
-          <img src="${product.image}" alt="${product.name}" class="product-image" style="width:100%; height:140px; object-fit:cover; border-radius:8px; background:#ddd; margin-bottom:8px;">
+        <div class="product-image-wrap" data-image="${escapeHtml(product.image)}" data-title="${escapeHtml(product.name)}">
+          <img src="${normalizeImageSrc(product.image)}" alt="${escapeHtml(product.name)}" class="product-image" style="width:100%; height:140px; object-fit:cover; border-radius:8px; background:#ddd; margin-bottom:8px;" onerror="this.onerror=null; this.style.display='none';">
           <span class="image-zoom-icon" aria-hidden="true">🔍</span>
         </div>
-        <div style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">${product.name}</div>
-        <small style="color:#0a4d92; display:block; margin-bottom:6px;">${product.category}</small>
+        <div style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">${escapeHtml(product.name)}</div>
+        <small style="color:#0a4d92; display:block; margin-bottom:6px;">${escapeHtml(product.category)}</small>
         <div style="font-weight:700; font-size:1.1rem; color:#111; margin-bottom:8px;">PGK ${product.price.toFixed(2)}</div>
         <div class="${stockClass}" style="margin-bottom:6px;">${stockText}</div>
         ${lowStockBadge}
@@ -1360,6 +1771,9 @@ function closeCartPanel() {
 
   // Search and filter products with highlighting
   function performSearch() {
+    // Reset pagination when filters/search/sort change
+    currentPage = 1;
+
     const query = document.getElementById('search-bar')?.value.toLowerCase().trim() || '';
     const category = document.getElementById('category-filter')?.value || '';
     const minPrice = parseFloat(document.getElementById('min-price')?.value || 0);
@@ -1388,6 +1802,9 @@ function closeCartPanel() {
     const productsSection = document.getElementById('products');
     productsSection.innerHTML = '';
 
+
+
+
     if (filtered.length === 0) {
       document.getElementById('no-results').style.display = 'block';
       document.getElementById('no-results').innerHTML = '<strong>No products found</strong><br>Try adjusting your search or filters.';
@@ -1396,11 +1813,16 @@ function closeCartPanel() {
     }
 
     document.getElementById('no-results').style.display = 'none';
+    // Enable pagination for search results
+    lastFilteredProducts = filtered;
+    renderCurrentPage();
+    return;
+
     filtered.forEach(product => {
       const productDiv = document.createElement('div');
       productDiv.className = 'product';
       
-      let name = product.name;
+      let name = escapeHtml(product.name);
       
       // Highlight matching query in name
       if (query !== '') {
@@ -1412,20 +1834,16 @@ function closeCartPanel() {
       const stockClass = product.inventory > 0 ? 'stock-label' : 'stock-label out-of-stock';
       const lowStockBadge = product.inventory > 0 && product.inventory <= lowStockThreshold ? '<div class="low-stock">Low stock</div>' : '';
       const actionButton = product.inventory > 0
-        ? `<button class="add-to-cart" onclick="addToCart('${product.id}')">Add to Cart</button>`
+        ? `<button class="add-to-cart" onclick="addToCart('${escapeHtml(product.id)}')">Add to Cart</button>`
         : `<button class="add-to-cart out-of-stock" disabled>Out of stock</button>`;
       
       productDiv.innerHTML = `
-        <div class="product-image-wrap" data-image="${product.image}" data-title="${product.name.replace(/"/g, '&quot;')}">
-          <img src="${product.image}" alt="${product.name}" class="product-image" style="width:100%; height:140px; object-fit:cover; border-radius:8px; background:#ddd; margin-bottom:8px;">
+        <div class="product-image-wrap" data-image="${escapeHtml(product.image)}" data-title="${escapeHtml(product.name)}">
+          <img src="${normalizeImageSrc(product.image)}" alt="${escapeHtml(product.name)}" class="product-image" style="width:100%; height:140px; object-fit:cover; border-radius:8px; background:#ddd; margin-bottom:8px;" onerror="this.onerror=null; this.style.display='none';">
           <span class="image-zoom-icon" aria-hidden="true">🔍</span>
         </div>
         <div style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">${name}</div>
-        <small style="color:#0a4d92; display:block; margin-bottom:6px;">${product.category}</small>
-        <div style="font-weight:700; font-size:1.1rem; color:#111; margin-bottom:8px;">PGK ${product.price.toFixed(2)}</div>
-        <div class="${stockClass}" style="margin-bottom:6px;">${stockText}</div>
-        ${lowStockBadge}
-        ${actionButton}
+        <small style="color:#0a4d92; display:block; margin-bottom:6px;">${escapeHtml(product.category)}</small>
       `;
       productsSection.appendChild(productDiv);
     });
@@ -1435,82 +1853,104 @@ function closeCartPanel() {
   }
 
 async function addToCart(productId) {
-    // Check if user is authenticated - if backend is available
-    if (useBackend && !isAuthenticated()) {
+  const product = allProducts.find(item => item.id === productId);
+  if (!product) return;
+
+  // Guest mode should not be able to add items to cart.
+  // This fixes cases where returning from the hamburger/auth UI still triggers add-to-cart.
+  if (!isAuthenticated()) {
+    showLoginPrompt('cart');
+    return;
+  }
+
+  if (product.inventory <= 0) {
+    showToast(`Sorry, ${product.name} is currently out of stock.`);
+    return;
+  }
+
+  // Local add helper (only used when backend mode is OFF)
+  const addLocalItem = () => {
+    cart[productId] = (cart[productId] || 0) + 1;
+    product.inventory -= 1;
+    proformaGenerated = false;
+    updateCartCount();
+    renderCartPanel();
+    performSearch();
+    saveCartToStorage();
+    showToast(`${product.name} has been added to your cart.`);
+  };
+
+  // If backend mode is active, guests must never modify cart.
+  if (useBackend) {
+    try {
+      await checkSession();
+    } catch (e) {
+      // ignore
+    }
+
+    if (!isAuthenticated()) {
+      // clear UI cart state (prevents “ghost” items)
+      Object.keys(cart).forEach(key => delete cart[key]);
+      proformaGenerated = false;
+      cartItems = 0;
+      updateCartCount();
+      renderCartPanel();
+
       showLoginPrompt('cart');
       return;
     }
-    
-    const product = allProducts.find(item => item.id === productId);
-    if (!product) return;
 
-    if (product.inventory <= 0) {
-        showToast(`Sorry, ${product.name} is currently out of stock.`);
-        return;
-    }
+    // Authenticated: call backend
+    try {
+      const response = await fetch('/api/cart/add', {
+        method: 'POST',
+        headers: getApiHeaders(),
+        body: JSON.stringify({ productId })
+      });
 
-    const addLocalItem = () => {
-        cart[productId] = (cart[productId] || 0) + 1;
-        product.inventory -= 1;
-        updateCartCount();
-        proformaGenerated = false;
-        renderCartPanel();
-        performSearch();
-        saveCartToStorage();
-        showToast(`${product.name} has been added to your cart.`);
-    };
+      const data = await response.json().catch(() => ({}));
 
-    const processAddRequest = async () => {
-      if (!useBackend) {
-        addLocalItem();
-        return;
-      }
-      try {
-        const response = await fetch('/api/cart/add', {
-          method: 'POST',
-          headers: getApiHeaders(),
-          body: JSON.stringify({ productId }),
-        });
-        const data = await response.json();
-        if (!response.ok) {
-          if (data.action === 'login') {
-            showLoginPrompt('cart');
-          } else {
-            showToast(data.message || 'Unable to add product to cart.');
-          }
+      if (!response.ok) {
+        if (response.status === 401 || data.action === 'login') {
+          showLoginPrompt('cart');
           return;
         }
-        updateProductsFromBackend(data.products);
-        Object.keys(cart).forEach(key => delete cart[key]);
-        Object.entries(data.cart || {}).forEach(([id, quantity]) => {
-          cart[id] = quantity;
-        });
-        updateCartCount();
-        performSearch();
-        proformaGenerated = false;
-        showToast(`${product.name} has been added to your cart.`);
-      } catch (error) {
-        console.error('Add to cart failed:', error);
-        useBackend = false;
-        addLocalItem();
+        showToast(data.message || 'Unable to add product to cart.');
+        return;
       }
-    };
 
-    const confirmedHandler = async () => {
-        await processAddRequest();
-    };
+      updateProductsFromBackend(data.products);
+      Object.keys(cart).forEach(key => delete cart[key]);
+      Object.entries(data.cart || {}).forEach(([id, quantity]) => {
+        cart[id] = quantity;
+      });
 
-    // For adding items, we don't need confirmation, so we can call directly
-    await processAddRequest();
+      proformaGenerated = false;
+      updateCartCount();
+      performSearch();
+      renderCartPanel();
+      showToast(`${product.name} has been added to your cart.`);
+      return;
+    } catch (error) {
+      // If backend fails while backend mode is enabled, do not fall back for guests.
+      showLoginPrompt('cart');
+      return;
+    }
+  }
+
+  // Backend mode is OFF: allow local cart only
+  addLocalItem();
 }
 
-  function openImageViewer(src, title) {
+
+function openImageViewer(src, title) {
     const modal = document.getElementById('image-modal');
     const viewerImg = document.getElementById('image-viewer-img');
     const caption = document.getElementById('image-viewer-caption');
     if (!modal || !viewerImg || !caption) return;
 
-    viewerImg.src = src;
+    viewerImg.src = normalizeImageSrc(src);
+
     viewerImg.alt = title || 'Product image';
     caption.textContent = title || '';
     modal.style.display = 'flex';
@@ -1522,7 +1962,8 @@ async function addToCart(productId) {
     const modal = document.getElementById('image-modal');
     const viewerImg = document.getElementById('image-viewer-img');
     if (!modal || !viewerImg) return;
-
+    const focusedElement = modal.querySelector(':focus');
+    if (focusedElement) focusedElement.blur();
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
     viewerImg.src = '';
@@ -1564,6 +2005,8 @@ function openPaymentModal() {
   function closePaymentModal() {
     const modal = document.getElementById('payment-modal');
     if (!modal) return;
+    const focusedElement = modal.querySelector(':focus');
+    if (focusedElement) focusedElement.blur();
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -2009,19 +2452,23 @@ async function verifyPayment(paymentId) {
   }
 
 // Load products when page loads
-   document.addEventListener('DOMContentLoaded', () => {
-     updateCartCount();
-     loadProducts();
+     document.addEventListener('DOMContentLoaded', () => {
+       // Initial auth check - restore state before loading products
+       initAuthState();
+       updateCartCount();
+       loadProducts().then(() => {
+         checkAuthUI(); // Ensure UI is updated after products load
+       });
 
-      // File input change listeners
-      document.addEventListener('change', (e) => {
-        if (e.target && e.target.id === 'payment-file-input') {
-          previewPaymentImage(e);
-        }
-        if (e.target && e.target.id === 'proforma-file-input') {
-          previewProformaInvoice(e);
-        }
-      });
+       // File input change listeners
+       document.addEventListener('change', (e) => {
+         if (e.target && e.target.id === 'payment-file-input') {
+           previewPaymentImage(e);
+         }
+         if (e.target && e.target.id === 'proforma-file-input') {
+           previewProformaInvoice(e);
+         }
+       });
 
       // Account dropdown functionality
     const accountBtn = document.getElementById('account-btn');
@@ -2069,23 +2516,18 @@ async function verifyPayment(paymentId) {
         showToast('Pending payments feature coming soon!', 2000);
       };
 
-      window.showContactUs = function() {
+window.showContactUs = function() {
         if (accountDropdown) { accountDropdown.style.display = 'none'; accountDropdown.setAttribute('aria-hidden', 'true'); }
         showToast('Contact Us: support@7pharmaltd.com | +675 123 4567', 4000);
       };
+ 
+      window.showAboutUs = function() {
+        if (accountDropdown) { accountDropdown.style.display = 'none'; accountDropdown.setAttribute('aria-hidden', 'true'); }
+        showToast('7 Pharmaceuticals Ltd - Providing quality healthcare products since 2010', 3000);
+      };
+    });
 
-window.showAboutUs = function() {
-   if (accountDropdown) { accountDropdown.style.display = 'none'; accountDropdown.setAttribute('aria-hidden', 'true'); }
-   showToast('7 Pharmaceuticals Ltd - Providing quality healthcare products since 2010', 3000);
-};
-      });
-
-// Initial auth check when script loads
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', checkAuthUI);
-} else {
-  checkAuthUI();
-}
+// Initial auth check and UI update handled in main DOMContentLoaded listener above
    
    
 

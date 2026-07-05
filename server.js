@@ -5,9 +5,6 @@ const path = require('path');
 const multer = require('multer');
 const crypto = require('crypto');
 const session = require('express-session');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const db = require('./db');
@@ -17,15 +14,13 @@ const HTTPS_KEY_PATH = (process.env.HTTPS_KEY_PATH || '').trim();
 const HTTPS_CERT_PATH = (process.env.HTTPS_CERT_PATH || '').trim();
 const HTTPS_CA_PATH = (process.env.HTTPS_CA_PATH || '').trim();
 
-const googleClientId = (process.env.GOOGLE_CLIENT_ID || '').trim();
-const googleClientSecret = (process.env.GOOGLE_CLIENT_SECRET || '').trim();
-const facebookAppId = (process.env.FACEBOOK_APP_ID || '').trim();
-const facebookAppSecret = (process.env.FACEBOOK_APP_SECRET || '').trim();
-
 const app = express();
 const http = require('http');
 const https = require('https');
 const port = process.env.PORT || 3000;
+
+// JSON body parser middleware
+app.use(express.json());
 
 // Trust the first proxy (e.g., nginx / load balancer) so req.secure
 // correctly respects X-Forwarded-Proto when SSL is terminated upstream.
@@ -36,12 +31,15 @@ app.set('trust proxy', 1);
 const corsOrigins = (process.env.CORS_ORIGIN || 'http://localhost:3000').split(',').map((s) => s.trim());
 app.use(cors({
   origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl) or from allowed origins
     if (!origin || corsOrigins.indexOf(origin) !== -1) {
       return callback(null, true);
     }
     return callback(new Error('Not allowed by CORS'));
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'X-Session-Id', 'X-Admin-Token']
 }));
 
 const createServer = () => {
@@ -74,19 +72,6 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }
 }));
-
-// Passport initialization
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Serialize/deserialize user for session
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
 
 // Data stores
 const products = [];
@@ -152,11 +137,25 @@ function loadProducts() {
   try {
     const data = fs.readFileSync(path.join(__dirname, 'ProductsDB', 'products.json'), 'utf8');
     const loadedProducts = JSON.parse(data);
+    products.length = 0;
     loadedProducts.forEach(p => products.push(p));
+    console.log(`[startup] Loaded ${products.length} products`);
   } catch (error) {
     console.error('Failed to load products:', error);
   }
 }
+
+function saveProducts() {
+  try {
+    fs.writeFileSync(path.join(__dirname, 'ProductsDB', 'products.json'), JSON.stringify(products, null, 2));
+  } catch (error) {
+    console.error('Failed to save products:', error);
+  }
+}
+
+// Ensure products are loaded on server start
+loadProducts();
+
 
 function addMessageToChat(paymentId, message) {
   db.addMessage(paymentId, message.from, message.text);
@@ -333,15 +332,26 @@ app.get('/api/products', (req, res) => {
   res.json(products);
 });
 
-// Cart endpoints - require authentication
-app.get('/api/cart', requireAuth, (req, res) => {
+// Cart endpoints - no auth required for guest users
+app.get('/api/cart', (req, res) => {
   const sessionId = req.header('X-Session-Id');
   const cart = getSessionCart(sessionId) || {};
   res.json({ cart, products });
 });
 
-app.post('/api/cart/add', requireAuth, (req, res) => {
+app.post('/api/cart/add', (req, res) => {
+  // Prevent cart modifications in guest mode.
+  // If user isn't authenticated, require login.
   const sessionId = req.header('X-Session-Id');
+  const user = getUserFromSession(sessionId);
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      message: 'Authentication required. Please login to continue.',
+      action: 'login'
+    });
+  }
+
   const { productId } = req.body;
   if (!productId) {
     return res.status(400).json({ message: 'productId is required' });
@@ -359,12 +369,13 @@ app.post('/api/cart/add', requireAuth, (req, res) => {
   const cart = data.carts[sessionId] || {};
   cart[productId] = (cart[productId] || 0) + 1;
   db.withLock(d => { d.carts[sessionId] = cart; });
-  product.inventory -= 1;
 
+  // Stock is finalized only at payment verification.
+  // Cart is treated as a selection/reservation, not a decrement of main inventory.
   res.json({ cart, products });
 });
 
-app.post('/api/cart/remove', requireAuth, (req, res) => {
+app.post('/api/cart/remove', (req, res) => {
   const sessionId = req.header('X-Session-Id');
   const { productId } = req.body;
   if (!productId) {
@@ -389,8 +400,8 @@ app.post('/api/cart/remove', requireAuth, (req, res) => {
     delete cart[productId];
   }
   db.withLock(d => { d.carts[sessionId] = cart; });
-  product.inventory += 1;
 
+  // Stock is finalized only at payment verification.
   res.json({ cart, products });
 });
 
@@ -409,72 +420,7 @@ app.post('/api/cart/checkout', requireAuth, (req, res) => {
 
 // Auth endpoints
 
-// OAuth Routes - initiate Google/Facebook login
-if (!isPlaceholder(googleClientId) && !isPlaceholder(googleClientSecret)) {
-  app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-  app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/auth/failure' }),
-    (req, res) => {
-      const user = req.user;
-      const token = generateToken();
-      const sessionId = `oauth_session_${token}`;
-      let existingUser = db.findUserByEmail(user.email);
-      if (!existingUser) {
-        existingUser = db.createUser({
-          email: user.email,
-          username: user.username,
-          provider: user.provider,
-          profilePic: user.profilePic
-        });
-      }
-      db.createSession(sessionId, existingUser.id, token, { ...existingUser, token });
-      req.session.user = { ...existingUser, token, sessionId };
-      req.session.sessionId = sessionId;
-      res.redirect(process.env.OAUTH_SUCCESS_REDIRECT || '/auth/success?sessionId=' + encodeURIComponent(sessionId) + '&token=' + encodeURIComponent(token) + '&role=user&username=' + encodeURIComponent(existingUser.username) + '&email=' + encodeURIComponent(existingUser.email) + (existingUser.profilePic ? '&profilePic=' + encodeURIComponent(existingUser.profilePic) : ''));
-    }
-  );
-} else {
-  app.get('/auth/google', (req, res) => res.status(501).json({ message: 'Google OAuth is not configured on the server.' }));
-  app.get('/auth/google/callback', (req, res) => res.status(501).json({ message: 'Google OAuth is not configured on the server.' }));
-}
-
-if (!isPlaceholder(facebookAppId) && !isPlaceholder(facebookAppSecret)) {
-  app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-  app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/auth/failure' }),
-    (req, res) => {
-      const user = req.user;
-      const token = generateToken();
-      const sessionId = `oauth_session_${token}`;
-      let existingUser = db.findUserByEmail(user.email);
-      if (!existingUser) {
-        existingUser = db.createUser({
-          email: user.email,
-          username: user.username,
-          provider: user.provider,
-          profilePic: user.profilePic
-        });
-      }
-      db.createSession(sessionId, existingUser.id, token, { ...existingUser, token });
-      req.session.user = { ...existingUser, token, sessionId };
-      req.session.sessionId = sessionId;
-      res.redirect('/auth/success?sessionId=' + encodeURIComponent(sessionId) + '&token=' + encodeURIComponent(token) + '&role=user&username=' + encodeURIComponent(existingUser.username) + '&email=' + encodeURIComponent(existingUser.email) + (existingUser.profilePic ? '&profilePic=' + encodeURIComponent(existingUser.profilePic) : ''));
-    }
-  );
-} else {
-  app.get('/auth/facebook', (req, res) => res.status(501).json({ message: 'Facebook OAuth is not configured on the server.' }));
-  app.get('/auth/facebook/callback', (req, res) => res.status(501).json({ message: 'Facebook OAuth is not configured on the server.' }));
-}
-
-app.get('/auth/failure', (req, res) => {
-  res.redirect('/login.html?error=auth_failed');
-});
-
-app.get('/auth/success', (req, res) => {
-  res.redirect('/login.html?auth=success' + Object.entries(req.query).map(([k, v]) => `&${k}=${encodeURIComponent(v)}`).join(''));
-});
-
-// Login endpoint - for email/password login
+// Login endpoint - for phone/password login
 app.post('/api/auth/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -490,10 +436,8 @@ app.post('/api/auth/login', (req, res) => {
   }
 
   if (username && password) {
+    // Look up by phone email format or username
     let existingUser = db.findUserByEmail(username);
-    if (!existingUser) {
-      existingUser = db.findUserByEmail(username.includes('@') ? username : username + '@example.com');
-    }
     if (!existingUser) {
       const data = db.readDB();
       existingUser = Object.values(data.users).find(u => u.username === username);
@@ -502,18 +446,11 @@ app.post('/api/auth/login', (req, res) => {
       const token = generateToken();
       const sessionId = `user_session_${token}`;
       db.createSession(sessionId, existingUser.id, token, { role: existingUser.role, username: existingUser.username, email: existingUser.email, profile_pic: existingUser.profile_pic });
-      return res.json({ success: true, token, sessionId, role: 'user', username: existingUser.username, email: existingUser.email });
+      return res.json({ success: true, token, sessionId, role: 'user', username: existingUser.username, email: existingUser.email, profilePic: existingUser.profile_pic });
     }
-
-    const token = generateToken();
-    const sessionId = `user_session_${token}`;
-    const userData = { username, email: username.includes('@') ? username : username + '@example.com', role: 'user' };
-    const newUser = db.createUser({ email: userData.email, username: userData.username, role: 'user', password: password });
-    db.createSession(sessionId, newUser.id, token, { role: 'user', username: userData.username, email: userData.email });
-    return res.json({ success: true, token, sessionId, role: 'user', username: userData.username });
   }
 
-  res.status(401).json({ message: 'Invalid username or password' });
+  res.status(401).json({ message: 'Invalid phone number or password' });
 });
 
 // Social auth registration/login endpoint
@@ -547,6 +484,62 @@ app.post('/api/auth/social', (req, res) => {
     username: user.username,
     email: user.email,
     profilePic: user.profile_pic
+  });
+});
+
+// Phone registration endpoint
+app.post('/api/auth/register', (req, res) => {
+  const { phone, username, password } = req.body;
+
+  if (!phone || !password) {
+    return res.status(400).json({ success: false, message: 'Phone number and password are required.' });
+  }
+
+  // Validate phone format (7-8 digits after +675)
+  if (!/^\d{7,8}$/.test(phone)) {
+    return res.status(400).json({ success: false, message: 'Phone number must be 7-8 digits.' });
+  }
+
+  const userEmail = '675' + phone + '@phone.local';
+  const finalUsername = username || 'phone_' + phone;
+
+  // Check if user already exists
+  const existingUser = db.findUserByEmail(userEmail);
+  if (existingUser) {
+    return res.status(400).json({ success: false, message: 'Phone number already registered.' });
+  }
+
+  // Check if username is taken (if provided)
+  if (username) {
+    const data = db.readDB();
+    const usernameTaken = Object.values(data.users).some(u => u.username === username);
+    if (usernameTaken) {
+      return res.status(400).json({ success: false, message: 'Username already taken. Choose another.' });
+    }
+  }
+
+  // Create new user
+  const newUser = db.createUser({
+    email: userEmail,
+    username: finalUsername,
+    password: password,
+    provider: 'phone',
+    profilePic: null
+  });
+
+  // Auto-login after registration
+  const token = generateToken();
+  const sessionId = `user_session_${token}`;
+  db.createSession(sessionId, newUser.id, token, { role: newUser.role, username: newUser.username, email: newUser.email, profile_pic: newUser.profile_pic });
+
+  res.json({
+    success: true,
+    token,
+    sessionId,
+    role: newUser.role,
+    username: newUser.username,
+    email: newUser.email,
+    profilePic: newUser.profile_pic
   });
 });
 
@@ -642,22 +635,96 @@ app.get('/api/admin/payments', verifyAdminToken, (req, res) => {
 });
 
 app.post('/api/admin/payments/:paymentId/verify', verifyAdminToken, (req, res) => {
-  const { paymentId } = req.params;
-  const payment = db.getPayment(paymentId);
+   const { paymentId } = req.params;
+   const payment = db.getPayment(paymentId);
 
-  if (!payment) {
-    return res.status(404).json({ message: 'Payment not found' });
-  }
+   if (!payment) {
+     return res.status(404).json({ message: 'Payment not found' });
+   }
 
-  db.updatePaymentStatus(paymentId, 'verified');
+   // Idempotency: if already verified, do not deduct stock again.
+   if (payment.status === 'verified') {
+     const refreshedPayment = db.getPayment(paymentId);
 
-  const data = db.readDB();
-  const cart = data.carts[payment.user_id] || {};
-  db.withLock(d => { d.carts[payment.user_id] = {}; });
+     // Idempotent behavior: do not re-deduct stock and do not spam system messages.
+     // Invoice/receipt endpoints will generate PDFs on-demand if missing.
+     return res.json({
+       success: true,
+       message: 'Payment already verified. Inventory is already finalized.',
+       payment: refreshedPayment,
+       invoiceUrl: `/api/admin/payments/${paymentId}/invoice`,
+       receiptUrl: `/api/admin/payments/${paymentId}/receipt`
+     });
+   }
 
-  const refreshedPayment = db.getPayment(paymentId);
-  const invoicePath = generateInvoicePDF(refreshedPayment);
-  const receiptPath = generateReceiptPDF(refreshedPayment);
+   // Only finalize stock when moving from pending -> verified.
+   // Safety check: ensure stock is sufficient for every item before deducting any.
+   const items = Array.isArray(payment.items) ? payment.items : [];
+
+   function resolveProductForItem(item) {
+     const productId =
+       item.productId ??
+       item.product_id ??
+       item.id ??
+       item.productID ??
+       null;
+
+     const qty = Number(item.quantity ?? 0);
+
+     // Preferred: lookup by id/productId
+     if (productId != null) {
+       const p = findProduct(productId);
+       if (p) return { product: p, quantity: qty };
+     }
+
+     // Fallback: lookup by name (handles historical payloads with only name)
+     if (item.name) {
+       const p = products.find(p2 => p2.name === item.name);
+       if (p) return { product: p, quantity: qty };
+     }
+
+     return { product: null, quantity: qty };
+   }
+
+   // Safety check: ensure stock is sufficient for every item before deducting any.
+   for (const item of items) {
+     const { product, quantity } = resolveProductForItem(item);
+
+     if (!product) {
+       return res.status(400).json({
+         message: `Product not found for payment item (productId/name missing or mismatched)`
+       });
+     }
+
+     if (!Number.isFinite(quantity) || quantity <= 0) {
+       return res.status(400).json({
+         message: `Invalid quantity for ${product.name}. Quantity: ${item.quantity}`
+       });
+     }
+
+     if (product.inventory < quantity) {
+       return res.status(400).json({
+         message: `Insufficient stock for ${product.name}. Requested: ${quantity}, Available: ${product.inventory}`
+       });
+     }
+   }
+
+   // Deduct inventory from main products.json exactly once.
+   items.forEach(item => {
+     const { product, quantity } = resolveProductForItem(item);
+     if (!product) return;
+
+     product.inventory -= quantity;
+     if (product.inventory < 0) product.inventory = 0; // extra safety clamp
+   });
+
+   saveProducts();
+
+   db.updatePaymentStatus(paymentId, 'verified');
+
+   const refreshedPayment = db.getPayment(paymentId);
+   const invoicePath = generateInvoicePDF(refreshedPayment);
+   const receiptPath = generateReceiptPDF(refreshedPayment);
 
   db.addMessage(paymentId, 'system', 'Your payment has been verified and approved!');
   db.addMessage(paymentId, 'system', 'Invoice and receipt have been generated and are available for download.');
@@ -795,63 +862,6 @@ app.use((err, req, res, next) => {
   next();
 });
 
-function isPlaceholder(value) {
-  if (!value) return true;
-  const v = value.trim().toLowerCase();
-  return v.startsWith('your_') || v.startsWith('replace_with_your_') || v.includes('_client_id') || v.includes('_app_id') || v.includes('_client_secret') || v.includes('_app_secret') || v.includes('placeholder') || v.includes('example');
-}
-
-// OAuth strategies must be registered after session/passport init
-if (!isPlaceholder(googleClientId) && !isPlaceholder(googleClientSecret)) {
-  try {
-    passport.use(new GoogleStrategy({
-      clientID: googleClientId,
-      clientSecret: googleClientSecret,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:3000/auth/google/callback'
-    }, (accessToken, refreshToken, profile, done) => {
-      const user = {
-        provider: 'google',
-        providerId: profile.id,
-        email: profile.emails && profile.emails[0] ? profile.emails[0].value : '',
-        username: profile.displayName || (profile.emails && profile.emails[0] ? profile.emails[0].value.split('@')[0] : 'GoogleUser'),
-        profilePic: profile.photos && profile.photos[0] ? profile.photos[0].value : null,
-        firstName: profile.name ? profile.name.givenName : '',
-        lastName: profile.name ? profile.name.familyName : ''
-      };
-      return done(null, user);
-    }));
-  } catch (err) {
-    console.warn('Google OAuth strategy skipped:', err.message);
-  }
-}
-
-if (!isPlaceholder(facebookAppId) && !isPlaceholder(facebookAppSecret)) {
-  try {
-    passport.use(new FacebookStrategy({
-      clientID: facebookAppId,
-      clientSecret: facebookAppSecret,
-      callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback',
-      profileFields: ['id', 'emails', 'name', 'picture.type(large)']
-    }, (accessToken, refreshToken, profile, done) => {
-      const name = profile.name || {};
-      const user = {
-        provider: 'facebook',
-        providerId: profile.id,
-        email: profile.emails && profile.emails[0] ? profile.emails[0].value : '',
-        username: profile.displayName || `${name.givenName || ''} ${name.familyName || ''}`.trim() || 'FacebookUser',
-        profilePic: profile.photos && profile.photos[0] ? profile.photos[0].value : null,
-        firstName: name.givenName || '',
-        lastName: name.familyName || ''
-      };
-      return done(null, user);
-    }));
-  } catch (err) {
-    console.warn('Facebook OAuth strategy skipped:', err.message);
-  }
-}
-
 server.listen(port, () => {
   console.log(`Server running at ${protocol}://localhost:${port}`);
 });
-
-loadProducts();
