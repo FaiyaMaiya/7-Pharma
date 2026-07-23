@@ -9,7 +9,7 @@
   },
   {
     "id": "ph002",
-    "name": "Adrenaline Injection. 1;1000. 1ml",
+    "name": "Adrenaline Injection. 1:1000. 1ml",
     "price": 18.99,
     "category": "Pharmaceuticals Drugs & Surgical Consumables",
     "inventory": 99,
@@ -121,7 +121,7 @@
   },
   {
     "id": "ph016",
-    "name": "Atropine Sulphate Injuction, 1.2mg per 1ml",
+    "name": "Atropine Sulphate Injection, 1.2mg per 1ml",
     "price": 12.99,
     "category": "Pharmaceuticals Drugs & Surgical Consumables",
     "inventory": 100,
@@ -1841,10 +1841,10 @@
   },
   {
     "id": "ph231",
-    "name": "Product 231",
+    "name": "Nystatin Oral Suspension 100.000IU or ml, 50ml",
     "price": 12.99,
     "category": "Pharmaceuticals Drugs & Surgical Consumables",
-    "inventory": 0,
+    "inventory": 100,
     "image": "images/Pharmaceutical Item List (001 - 129)/Item 231 -Nystatin Oral Suspension 100.000IU or ml, 50ml.jpg"
   },
   {
