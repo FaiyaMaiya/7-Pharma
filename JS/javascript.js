@@ -1636,8 +1636,8 @@ function closeCartPanel() {
       <button class="page-btn" onclick="goToPrevPage()" ${currentPage <= 1 ? 'disabled' : ''}>Previous</button>
       ${pageButtonsHtml.join('')}
       <button class="page-btn" onclick="goToPage(${totalPages})" ${currentPage >= totalPages ? 'disabled' : ''}>Last</button>
-      <span class="page-status" style="color:#ccc; font-weight:800; padding:0 4px; font-size:0.85em;">Page ${currentPage} of ${totalPages} (${start}-${end} of ${totalItems})</span>
       <button class="page-btn" onclick="goToNextPage()" ${currentPage >= totalPages ? 'disabled' : ''}>Next</button>
+      <span class="page-status" style="color:#ccc; font-weight:800; padding:0 4px; font-size:0.85em; width:100%; text-align:center;">Page ${currentPage} of ${totalPages} (${start}-${end} of ${totalItems})</span>
     `;
 
     paginationTopEl.innerHTML = html;

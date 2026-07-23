@@ -732,6 +732,7 @@ nav.main-nav {
   align-items:center;
   justify-content:center;
   margin:12px;
+  flex-wrap:wrap;
 }
 
 .page-btn{
@@ -742,9 +743,46 @@ nav.main-nav {
   color:#fff;
   cursor:pointer;
   font-weight:700;
+  white-space:nowrap;
 }
 
 .page-btn.active{ background:orange; color:#000; }
+
+/* Pagination mobile responsiveness */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 6px;
+    margin: 10px 8px;
+    justify-content: center;
+  }
+  .page-btn {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+  }
+  .page-status {
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 6px;
+    padding: 4px 0 !important;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    gap: 4px;
+    margin: 8px 4px;
+  }
+  .page-btn {
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    min-width: 0;
+  }
+  .page-status {
+    font-size: 0.78em !important;
+    margin-top: 8px;
+  }
+}
 
 /* Sort select */
 select.sort-select{ padding:8px; border-radius:6px; border:none; font-weight:700; }
